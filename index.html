@@ -16,8 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
-    <title>ChatGPT Plus充值 - 国内ChatGPT会员代充服务 | 官方安全快速 - AIchongzhi</title>
-    <meta name="description" content="专业ChatGPT Plus充值平台，支持国内用户快速升级ChatGPT会员。官方iOS正规代充，20秒完成充值，价格比官方便宜15%。24/7人工充值系统，50000+用户信赖，99.9%成功率。">
+    <title>ChatGPT Plus充值 - 国内AI会员代充服务 | 官方安全快速 - AIchongzhi</title>
+    <meta name="description" content="专业ChatGPT Plus充值平台，支持国内用户快速升级AI会员。官方iOS正规代充，20秒完成充值，价格比官方便宜15%。24/7人工充值系统，50000+用户信赖，99.9%成功率。">
 
     <!-- Google Search Console验证 -->
     <meta name="google-site-verification" content="dMGoYkxPFvvqbA4sY2-s2w5C2-DHAaOAVTv4dLZPwMY" />
@@ -255,7 +255,7 @@
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="container mx-auto text-center relative z-10 opacity-0 fade-in" id="hero" style="opacity: 1;">
             <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-                数卡银河🌌我们只提供优质商品
+                数卡银河🌌
                 <span class="block text-3xl md:text-5xl font-light mt-2">致力于为全球用户提供高质量AI服务</span>
             </h1>
             <!-- 信任徽章（响应式优化 - 网页端更大更醒目） -->
@@ -278,7 +278,7 @@
             </div>
             
             <p class="text-xl md:text-2xl text-white/90 mb-8 font-light">
-                20 秒完成充值，永久免费教程
+                我们不断探索AI前沿技术，只为给您带来最优质、最贴心的AI服务体验！ 
             </p>
             
             <!-- 主按钮组 -->
@@ -289,8 +289,8 @@
                 <a href="https://www.kdocs.cn/l/cnzDh4r65IoM" target="_blank" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-indigo-600 hover:-translate-y-0.5 transition-all duration-300" onclick="trackEvent(&#39;recharge_click&#39;)">
                     <span>⚡ 充值Plus</span>
                 </a>
-                <button onclick="openVideoModal()" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-indigo-600 hover:-translate-y-0.5 transition-all duration-300">
-                    <span>📺 视频教程</span>
+                <button onclick="showQrCode()" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-indigo-600 hover:-translate-y-0.5 transition-all duration-300">
+                    <span>💁‍♀️ 联系客服</span>
                 </button>
             </div>
             
@@ -366,8 +366,8 @@
                 <div class="hidden md:block w-20 h-1 bg-gradient-to-r from-indigo-600 to-teal-500 rounded"></div>
                 <div class="text-center">
                     <div class="w-20 h-20 bg-teal-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 mx-auto">2</div>
-                    <h3 class="text-xl font-semibold mb-2">第二步：登录ChatGPT账号</h3>
-                    <p class="text-gray-600">登录您的 ChatGPT 账号</p>
+                    <h3 class="text-xl font-semibold mb-2">第二步：登录AI账号</h3>
+                    <p class="text-gray-600">登录您的 AI 账号</p>
                 </div>
                 <div class="hidden md:block w-20 h-1 bg-gradient-to-r from-teal-500 to-green-500 rounded"></div>
                 <div class="text-center">
@@ -382,7 +382,7 @@
     <!-- Features Section 特性介绍 -->
     <section class="py-20 px-4 bg-gray-50">
         <div class="container mx-auto opacity-0 fade-in" id="features" style="opacity: 1;">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">为什么选择我们的ChatGPT代充服务？</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">为什么选择我们的AI代充服务？</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                     <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -395,7 +395,7 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
                         <span class="text-2xl">💰</span>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">20秒快速完成充值</h3>
+                    <h3 class="text-xl font-semibold mb-4">60秒快速完成充值</h3>
                     <p class="text-gray-600">全自动化系统，瞬间到账无需等待</p>
                 </div>
                 <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
@@ -809,7 +809,21 @@
             }
         });
     </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+function showQrCode() {
+    Swal.fire({
+        imageUrl: 'https://i.ibb.co/7d61C6vx/44d1db71435935355a67a26a9bf327c6.jpg', // 图片链接
+        imageWidth: 300,       // 图片宽度
+        imageAlt: '客服二维码', 
+        showConfirmButton: false, // 不显示确认按钮
+        showCloseButton: true,    // 显示关闭按钮
+        background: '#fff',       // 背景颜色
+        backdrop: `rgba(0,0,0,0.6)` // 背景遮罩透明度
+    });
+}
+</script>
  
 
 
