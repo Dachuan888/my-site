@@ -1,4 +1,10 @@
 # robots.txt for 2025plus.top
+
+# 禁止百度收录
+User-agent: Baiduspider
+Disallow: /
+
+# 允许其他搜索引擎
 User-agent: *
 Allow: /
 
