@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -145,7 +146,6 @@
       <nav class="nav-links" aria-label="主导航">
         <a href="#service">服务</a>
         <a href="#process">流程</a>
-        <a href="#support">支持</a>
       </nav>
       <a class="nav-cta" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer">立即购买</a>
     </div>
@@ -212,33 +212,19 @@
     <section class="final" id="support">
       <div class="wrap reveal">
         <h2>现在开始，<br>把时间留给更重要的事。</h2>
-        <p>购买、充值、支持，都在这里。</p>
+        <p>购买、充值，都在这里。</p>
         <div class="hero-actions">
           <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer">购买会员卡密 <span>↗</span></a>
-          <button class="secondary" type="button" id="supportBtn">联系客服</button>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap footer-row"><span>© 2026 AI 会员充值服务</span><div class="footer-links"><a href="https://2025plus.top/" target="_blank" rel="noreferrer">充值入口</a><a href="#support" id="footerSupport">联系客服</a></div></div>
+    <div class="wrap footer-row"><span>© 2026 AI 会员充值服务</span><div class="footer-links"><a href="https://2025plus.top/" target="_blank" rel="noreferrer">充值入口</a></div></div>
   </footer>
 
-  <div class="modal" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
-    <div class="modal-card"><h3 id="supportTitle">联系客服</h3><p>扫码添加客服，提交订单截图或描述你的问题。</p><img class="qr" src="https://i.ibb.co/mCTDYncZ/e38c1ab638bacc4b863728c7df4dfaa2.jpg" alt="客服二维码"><button class="close" type="button" id="closeModal">关闭</button></div>
-  </div>
-
   <script>
-    const modal = document.querySelector('#supportModal');
-    const openModal = () => modal.classList.add('open');
-    const closeModal = () => modal.classList.remove('open');
-    document.querySelector('#supportBtn').addEventListener('click', openModal);
-    document.querySelector('#footerSupport').addEventListener('click', (event) => { event.preventDefault(); openModal(); });
-    document.querySelector('#closeModal').addEventListener('click', closeModal);
-    modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
-
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
     }, { threshold: .12 });
