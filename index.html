@@ -74,6 +74,7 @@
     .mini-value { font-weight: 600; }
     .status { display: inline-flex; align-items: center; gap: 6px; color: var(--green); font-size: 12px; }
     .status i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .status.offline { color: #d14343; }
 
     .section { padding: 118px 0; }
     .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 42px; }
@@ -172,7 +173,7 @@
               <div class="device-sub">不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。</div>
             </div>
             <div class="mini-card">
-              <div class="mini-row"><span class="mini-label">服务状态</span><span class="status"><i></i>在线</span></div>
+              <div class="mini-row"><span class="mini-label">服务状态</span><span class="status" id="serviceStatus"><i></i><span class="status-text">在线</span></span></div>
               <div class="mini-row"><span class="mini-label">订单处理</span><span class="mini-value">清晰可查</span></div>
               <div class="mini-row"><span class="mini-label">售后支持</span><span class="mini-value">人工协助</span></div>
             </div>
@@ -225,6 +226,25 @@
   </footer>
 
   <script>
+    const serviceStatus = document.querySelector('#serviceStatus');
+    const statusText = serviceStatus.querySelector('.status-text');
+
+    function updateServiceStatus() {
+      const parts = new Intl.DateTimeFormat('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+        hour: '2-digit',
+        hour12: false,
+      }).formatToParts(new Date());
+      const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? 0);
+      const isOnline = hour >= 10 && hour < 23;
+      serviceStatus.classList.toggle('offline', !isOnline);
+      statusText.textContent = isOnline ? '在线' : '不在线';
+      serviceStatus.setAttribute('aria-label', isOnline ? '服务在线，工作时间为10点到23点' : '服务不在线，工作时间为10点到23点');
+    }
+
+    updateServiceStatus();
+    window.setInterval(updateServiceStatus, 60 * 1000);
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
     }, { threshold: .12 });
