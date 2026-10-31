@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -46,9 +45,9 @@
     .lang-toggle svg { width: 17px; height: 17px; display: block; }
     .language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 30; display: none; width: 178px; padding: 6px; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; background: rgba(247,252,248,.96); box-shadow: 0 18px 42px rgba(22,50,35,.16); backdrop-filter: blur(18px); }
     .language-picker.open .language-menu { display: grid; gap: 2px; }
-    .language-option { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 10px; border-radius: 10px; color: #385144; background: transparent; text-align: left; font-size: 13px; transition: background .18s ease, color .18s ease; }
+    .language-option { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px; border-radius: 10px; color: #385144; background: transparent; text-align: left; font-size: 13px; }
     .language-option:hover, .language-option.active { color: #233b2c; background: #dfece1; }
-    .language-option .check { color: #3b8056; font-size: 16px; line-height: 1; opacity: 0; }
+    .language-option .check { color: #3b8056; font-size: 16px; opacity: 0; }
     .language-option.active .check { opacity: 1; }
 
     .hero { position: relative; overflow: hidden; min-height: 820px; padding: 180px 0 100px; text-align: center; }
@@ -60,11 +59,11 @@
     .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: #22a06b; box-shadow: 0 0 0 5px rgba(34,160,107,.12); }
     h1 { max-width: 820px; margin: 0 auto; font-size: clamp(46px, 8vw, 92px); line-height: .98; letter-spacing: -.075em; font-weight: 700; }
     h1 span { display: block; color: #6e6e73; }
-    .hero-copy { max-width: 560px; margin: 30px auto 0; color: var(--muted); font-size: clamp(17px, 2vw, 21px); letter-spacing: -.02em; }
+    .hero-copy { max-width: 560px; margin: 30px auto 0; color: var(--muted); font-size: clamp(17px, 2vw, 21px); }
     .hero-actions { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
     .primary, .secondary { min-height: 48px; padding: 0 23px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
     .primary { color: #fff; background: var(--blue); box-shadow: 0 12px 24px rgba(0,113,227,.2); }
-    .primary:hover { transform: translateY(-2px); background: var(--blue-dark); box-shadow: 0 16px 30px rgba(0,113,227,.27); }
+    .primary:hover { transform: translateY(-2px); background: var(--blue-dark); }
     .secondary { color: var(--blue); background: rgba(255,255,255,.58); border: 1px solid rgba(0,113,227,.22); }
     .secondary:hover { transform: translateY(-2px); background: #fff; }
     .hero-note { margin-top: 18px; color: #8a8a8f; font-size: 12px; }
@@ -96,7 +95,7 @@
     .feature { min-height: 260px; padding: 27px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 24px; background: var(--white); box-shadow: 0 14px 40px rgba(0,0,0,.045); transition: transform .25s ease, box-shadow .25s ease; }
     .feature:hover { transform: translateY(-5px); box-shadow: 0 24px 55px rgba(0,0,0,.09); }
     .feature-icon { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: #f0f5ff; color: var(--blue); font-size: 17px; }
-    .feature h3 { margin: 26px 0 8px; font-size: 20px; letter-spacing: -.035em; }
+    .feature h3 { margin: 26px 0 8px; font-size: 20px; }
     .feature p { margin: 0; color: var(--muted); font-size: 14px; }
 
     .process { padding: 118px 0; background: #fff; }
@@ -104,31 +103,24 @@
     .step { padding: 28px 26px 18px 0; border-bottom: 1px solid var(--line); }
     .step:not(:last-child) { margin-right: 28px; border-right: 1px solid var(--line); }
     .step-number { color: var(--blue); font-size: 13px; font-weight: 600; }
-    .step h3 { margin: 48px 0 8px; font-size: 24px; letter-spacing: -.045em; }
+    .step h3 { margin: 48px 0 8px; font-size: 24px; }
     .step p { margin: 0; color: var(--muted); font-size: 14px; }
 
     .final { padding: 150px 0 166px; text-align: center; background: radial-gradient(circle at 50% 0%, #e5f0ff, transparent 48%), #f5f5f7; }
-    .final h2 { max-width: 720px; margin: 0 auto; font-size: clamp(38px, 6vw, 70px); line-height: 1.02; letter-spacing: -.07em; }
+    .final h2 { max-width: 720px; margin: 0 auto; font-size: clamp(38px, 6vw, 70px); line-height: 1.02; }
     .final p { margin: 22px auto 0; color: var(--muted); font-size: 17px; }
     .final .hero-actions { margin-top: 30px; }
     footer { padding: 24px 0; color: #8a8a8f; background: #fff; border-top: 1px solid var(--line); font-size: 12px; }
     .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .footer-links { display: flex; gap: 18px; }
-    .footer-links a:hover { color: var(--ink); }
-
-    .modal { position: fixed; inset: 0; z-index: 60; display: none; place-items: center; padding: 22px; background: rgba(0,0,0,.34); backdrop-filter: blur(12px); }
-    .modal.open { display: grid; }
-    .modal-card { width: min(390px, 100%); padding: 28px; border-radius: 25px; background: #fff; box-shadow: 0 30px 90px rgba(0,0,0,.22); text-align: center; animation: pop .25s ease; }
-    .modal-card h3 { margin: 0; font-size: 24px; letter-spacing: -.045em; }
-    .modal-card p { margin: 10px 0 18px; color: var(--muted); font-size: 14px; }
-    .qr { width: 190px; height: 190px; object-fit: cover; margin: 0 auto 18px; border-radius: 14px; background: #f3f3f3; }
-    .close { width: 100%; min-height: 43px; border-radius: 999px; color: var(--ink); background: #f2f2f2; }
-    .close:hover { background: #e9e9eb; }
 
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-    @keyframes sweep { 0%, 25% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
-    @keyframes pop { from { opacity: 0; transform: scale(.96) translateY(8px); } to { opacity: 1; transform: none; } }
+
+    @keyframes sweep {
+      0%, 25% { transform: translateX(-100%); }
+      55%, 100% { transform: translateX(100%); }
+    }
 
     @media (max-width: 780px) {
       .wrap { width: min(100% - 32px, 640px); }
@@ -154,39 +146,103 @@
 <body>
   <header class="topbar">
     <div class="wrap nav">
-      <a class="logo" href="#top" aria-label="AI 会员充值首页"><span class="logo-mark">AI</span><span data-i18n="brand">会员充值</span></a>
+      <a class="logo" href="#top" aria-label="AI 会员充值首页">
+        <span class="logo-mark">AI</span>
+        <span data-i18n="brand">会员充值</span>
+      </a>
+
       <nav class="nav-links" aria-label="主导航">
         <a href="#service" data-i18n="navService">服务</a>
         <a href="#process" data-i18n="navProcess">流程</a>
       </nav>
-      <div class="nav-actions"><div class="language-picker" id="languagePicker"><button class="lang-toggle" id="languageToggle" type="button" aria-label="切换语言" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path></svg></button><div class="language-menu" id="languageMenu" role="menu"><button class="language-option" type="button" role="menuitemradio" data-language="zh" aria-checked="true">简体中文 <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="zh-TW" aria-checked="false">繁體中文 <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="en" aria-checked="false">English <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="ja" aria-checked="false">日本語 <span class="check">●</span></button></div></div><a class="nav-cta" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="navBuy">立即购买</a></div>
+
+      <div class="nav-actions">
+        <div class="language-picker" id="languagePicker">
+          <button class="lang-toggle" id="languageToggle" type="button" aria-label="切换语言" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5"></circle>
+              <path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path>
+            </svg>
+          </button>
+
+          <div class="language-menu" id="languageMenu" role="menu">
+            <button class="language-option active" type="button" role="menuitemradio" data-language="zh" aria-checked="true">简体中文 <span class="check">●</span></button>
+            <button class="language-option" type="button" role="menuitemradio" data-language="zh-TW" aria-checked="false">繁體中文 <span class="check">●</span></button>
+            <button class="language-option" type="button" role="menuitemradio" data-language="en" aria-checked="false">English <span class="check">●</span></button>
+            <button class="language-option" type="button" role="menuitemradio" data-language="ja" aria-checked="false">日本語 <span class="check">●</span></button>
+          </div>
+        </div>
+
+        <a class="nav-cta" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="navBuy">立即购买</a>
+      </div>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
       <div class="wrap hero-content">
-        <div class="eyebrow"><i></i> <span data-i18n="eyebrow">AI 会员充值服务</span></div>
-        <h1 data-i18n="heroTitle">让强大的 AI，<span>马上为你工作。</span></h1>
-        <p class="hero-copy" data-i18n="heroCopy">购买卡密，提交充值，完成开通。每一步都清楚，每一笔都可查。</p>
-        <div class="hero-actions">
-          <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="buyCard">购买会员卡密 <span>↗</span></a>
-          <a class="secondary" href="https://2025plus.top/" target="_blank" rel="noreferrer" data-i18n="topUp">已有卡密，立即充值</a>
+        <div class="eyebrow">
+          <i></i>
+          <span data-i18n="eyebrow">AI 会员充值服务</span>
         </div>
-        <div class="hero-note" data-i18n="heroNote">支持自助操作 · 订单信息清晰可查</div>
+
+        <h1 data-i18n="heroTitle">让强大的 AI，<span>马上为你工作。</span></h1>
+
+        <p class="hero-copy" data-i18n="heroCopy">
+          购买卡密，提交充值，完成开通。每一步都清楚，每一笔都可查。
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="buyCard">
+            购买会员卡密 <span>↗</span>
+          </a>
+
+          <!-- 已改为 skyhplus.cc -->
+          <a class="secondary" href="https://skyhplus.cc/" target="_blank" rel="noreferrer" data-i18n="topUp">
+            已有卡密，立即充值
+          </a>
+        </div>
+
+        <div class="hero-note" data-i18n="heroNote">
+          支持自助操作 · 订单信息清晰可查
+        </div>
 
         <div class="device reveal" aria-label="充值服务预览">
-          <div class="device-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="device-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
           <div class="device-body">
             <div>
               <div class="device-kicker">A simple way to start</div>
-              <div class="device-title" data-i18n="deviceTitle">开通会员，<br>从这里开始。</div>
-              <div class="device-sub" data-i18n="deviceSub">不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。</div>
+              <div class="device-title" data-i18n="deviceTitle">
+                开通会员，<br>从这里开始。
+              </div>
+              <div class="device-sub" data-i18n="deviceSub">
+                不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。
+              </div>
             </div>
+
             <div class="mini-card">
-              <div class="mini-row"><span class="mini-label" data-i18n="serviceStatusLabel">服务状态</span><span class="status" id="serviceStatus"><i></i><span class="status-text">在线</span></span></div>
-              <div class="mini-row"><span class="mini-label" data-i18n="orderLabel">订单处理</span><span class="mini-value" data-i18n="orderValue">清晰可查</span></div>
-              <div class="mini-row"><span class="mini-label" data-i18n="afterSalesLabel">服务保障</span><span class="mini-value" data-i18n="afterSalesValue">流程清晰</span></div>
+              <div class="mini-row">
+                <span class="mini-label" data-i18n="serviceStatusLabel">服务状态</span>
+                <span class="status" id="serviceStatus">
+                  <i></i>
+                  <span class="status-text">在线</span>
+                </span>
+              </div>
+
+              <div class="mini-row">
+                <span class="mini-label" data-i18n="orderLabel">订单处理</span>
+                <span class="mini-value" data-i18n="orderValue">清晰可查</span>
+              </div>
+
+              <div class="mini-row">
+                <span class="mini-label" data-i18n="afterSalesLabel">服务保障</span>
+                <span class="mini-value" data-i18n="afterSalesValue">流程清晰</span>
+              </div>
             </div>
           </div>
         </div>
@@ -196,13 +252,38 @@
     <section class="section" id="service">
       <div class="wrap">
         <div class="section-head reveal">
-          <h2 class="section-title" data-i18n="serviceTitle">少一点等待。<br><span>多一点确定。</span></h2>
-          <p class="section-intro" data-i18n="serviceIntro">从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。</p>
+          <h2 class="section-title" data-i18n="serviceTitle">
+            少一点等待。<br><span>多一点确定。</span>
+          </h2>
+          <p class="section-intro" data-i18n="serviceIntro">
+            从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。
+          </p>
         </div>
+
         <div class="feature-grid">
-          <article class="feature reveal"><div><div class="feature-icon">⌁</div><h3 data-i18n="featureBuyTitle">自助购买</h3><p data-i18n="featureBuyText">打开购买入口，选择适合你的会员服务，支付后即可获得卡密。</p></div></article>
-          <article class="feature reveal"><div><div class="feature-icon">✓</div><h3 data-i18n="featureTopUpTitle">快速充值</h3><p data-i18n="featureTopUpText">输入卡密并提交，按页面提示完成验证，操作过程清楚明白。</p></div></article>
-          <article class="feature reveal"><div><div class="feature-icon">↗</div><h3 data-i18n="featureTrackTitle">清晰可查</h3><p data-i18n="featureTrackText">订单信息清楚可查，充值状态和后续使用更安心。</p></div></article>
+          <article class="feature reveal">
+            <div>
+              <div class="feature-icon">⌁</div>
+              <h3 data-i18n="featureBuyTitle">自助购买</h3>
+              <p data-i18n="featureBuyText">打开购买入口，选择适合你的会员服务，支付后即可获得卡密。</p>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div>
+              <div class="feature-icon">✓</div>
+              <h3 data-i18n="featureTopUpTitle">快速充值</h3>
+              <p data-i18n="featureTopUpText">输入卡密并提交，按页面提示完成验证，操作过程清楚明白。</p>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div>
+              <div class="feature-icon">↗</div>
+              <h3 data-i18n="featureTrackTitle">清晰可查</h3>
+              <p data-i18n="featureTrackText">订单信息清楚可查，充值状态和后续使用更安心。</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -210,149 +291,321 @@
     <section class="process" id="process">
       <div class="wrap">
         <div class="section-head reveal">
-          <h2 class="section-title" data-i18n="processTitle">三步，<br><span>完成开通。</span></h2>
-          <p class="section-intro" data-i18n="processIntro">不需要学习成本，也不需要反复确认。照着做，就能完成。</p>
+          <h2 class="section-title" data-i18n="processTitle">
+            三步，<br><span>完成开通。</span>
+          </h2>
+          <p class="section-intro" data-i18n="processIntro">
+            不需要学习成本，也不需要反复确认。照着做，就能完成。
+          </p>
         </div>
+
         <div class="process-list">
-          <article class="step reveal"><div class="step-number" data-i18n="step1Number">01 / 购买</div><h3 data-i18n="step1Title">选好你的服务</h3><p data-i18n="step1Text">进入购买入口，完成支付并保存卡密信息。</p></article>
-          <article class="step reveal"><div class="step-number" data-i18n="step2Number">02 / 充值</div><h3 data-i18n="step2Title">提交卡密</h3><p data-i18n="step2Text">进入充值入口，填写卡密并按提示提交。</p></article>
-          <article class="step reveal"><div class="step-number" data-i18n="step3Number">03 / 使用</div><h3 data-i18n="step3Title">开始使用 AI</h3><p data-i18n="step3Text">充值完成后登录对应账号，即可开始体验。</p></article>
+          <article class="step reveal">
+            <div class="step-number" data-i18n="step1Number">01 / 购买</div>
+            <h3 data-i18n="step1Title">选好你的服务</h3>
+            <p data-i18n="step1Text">进入购买入口，完成支付并保存卡密信息。</p>
+          </article>
+
+          <article class="step reveal">
+            <div class="step-number" data-i18n="step2Number">02 / 充值</div>
+            <h3 data-i18n="step2Title">提交卡密</h3>
+            <p data-i18n="step2Text">进入充值入口，填写卡密并按提示提交。</p>
+          </article>
+
+          <article class="step reveal">
+            <div class="step-number" data-i18n="step3Number">03 / 使用</div>
+            <h3 data-i18n="step3Title">开始使用 AI</h3>
+            <p data-i18n="step3Text">充值完成后登录对应账号，即可开始体验。</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="final" id="support">
       <div class="wrap reveal">
-        <h2 data-i18n="finalTitle">现在开始，<br>把时间留给更重要的事。</h2>
+        <h2 data-i18n="finalTitle">
+          现在开始，<br>把时间留给更重要的事。
+        </h2>
+
         <p data-i18n="finalText">购买、充值，都在这里。</p>
+
         <div class="hero-actions">
-          <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="finalBuy">购买会员卡密 <span>↗</span></a>
+          <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="finalBuy">
+            购买会员卡密 <span>↗</span>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap footer-row"><span data-i18n="footerBrand">© 2026 AI 会员充值服务</span><div class="footer-links"><a href="https://2025plus.top/" target="_blank" rel="noreferrer" data-i18n="footerTopUp">充值入口</a></div></div>
+    <div class="wrap footer-row">
+      <span data-i18n="footerBrand">© 2026 AI 会员充值服务</span>
+      <div class="footer-links">
+        <a href="https://skyhplus.cc/" target="_blank" rel="noreferrer" data-i18n="footerTopUp">
+          充值入口
+        </a>
+      </div>
+    </div>
   </footer>
 
   <script>
     const translations = {
       zh: {
-        brand: '会员充值', navService: '服务', navProcess: '流程', navBuy: '立即购买',
-        eyebrow: 'AI 会员充值服务', heroTitle: '让强大的 AI，<span>马上为你工作。</span>',
+        brand: '会员充值',
+        navService: '服务',
+        navProcess: '流程',
+        navBuy: '立即购买',
+        eyebrow: 'AI 会员充值服务',
+        heroTitle: '让强大的 AI，<span>马上为你工作。</span>',
         heroCopy: '购买卡密，提交充值，完成开通。每一步都清楚，每一笔都可查。',
-        buyCard: '购买会员卡密 <span>↗</span>', topUp: '已有卡密，立即充值', heroNote: '支持自助操作 · 订单信息清晰可查',
-        deviceTitle: '开通会员，<br>从这里开始。', deviceSub: '不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。',
-        serviceStatusLabel: '服务状态', orderLabel: '订单处理', orderValue: '清晰可查', afterSalesLabel: '服务保障', afterSalesValue: '流程清晰',
-        serviceTitle: '少一点等待。<br><span>多一点确定。</span>', serviceIntro: '从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。',
-        featureBuyTitle: '自助购买', featureBuyText: '打开购买入口，选择适合你的会员服务，支付后即可获得卡密。',
-        featureTopUpTitle: '快速充值', featureTopUpText: '输入卡密并提交，按页面提示完成验证，操作过程清楚明白。',
-        featureTrackTitle: '清晰可查', featureTrackText: '订单信息清楚可查，充值状态和后续使用更安心。',
-        processTitle: '三步，<br><span>完成开通。</span>', processIntro: '不需要学习成本，也不需要反复确认。照着做，就能完成。',
-        step1Number: '01 / 购买', step1Title: '选好你的服务', step1Text: '进入购买入口，完成支付并保存卡密信息。',
-        step2Number: '02 / 充值', step2Title: '提交卡密', step2Text: '进入充值入口，填写卡密并按提示提交。',
-        step3Number: '03 / 使用', step3Title: '开始使用 AI', step3Text: '充值完成后登录对应账号，即可开始体验。',
-        finalTitle: '现在开始，<br>把时间留给更重要的事。', finalText: '购买、充值，都在这里。', finalBuy: '购买会员卡密 <span>↗</span>',
-        footerBrand: '© 2026 AI 会员充值服务', footerTopUp: '充值入口',
+        buyCard: '购买会员卡密 <span>↗</span>',
+        topUp: '已有卡密，立即充值',
+        heroNote: '支持自助操作 · 订单信息清晰可查',
+        deviceTitle: '开通会员，<br>从这里开始。',
+        deviceSub: '不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。',
+        serviceStatusLabel: '服务状态',
+        orderLabel: '订单处理',
+        orderValue: '清晰可查',
+        afterSalesLabel: '服务保障',
+        afterSalesValue: '流程清晰',
+        serviceTitle: '少一点等待。<br><span>多一点确定。</span>',
+        serviceIntro: '从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。',
+        featureBuyTitle: '自助购买',
+        featureBuyText: '打开购买入口，选择适合你的会员服务，支付后即可获得卡密。',
+        featureTopUpTitle: '快速充值',
+        featureTopUpText: '输入卡密并提交，按页面提示完成验证，操作过程清楚明白。',
+        featureTrackTitle: '清晰可查',
+        featureTrackText: '订单信息清楚可查，充值状态和后续使用更安心。',
+        processTitle: '三步，<br><span>完成开通。</span>',
+        processIntro: '不需要学习成本，也不需要反复确认。照着做，就能完成。',
+        step1Number: '01 / 购买',
+        step1Title: '选好你的服务',
+        step1Text: '进入购买入口，完成支付并保存卡密信息。',
+        step2Number: '02 / 充值',
+        step2Title: '提交卡密',
+        step2Text: '进入充值入口，填写卡密并按提示提交。',
+        step3Number: '03 / 使用',
+        step3Title: '开始使用 AI',
+        step3Text: '充值完成后登录对应账号，即可开始体验。',
+        finalTitle: '现在开始，<br>把时间留给更重要的事。',
+        finalText: '购买、充值，都在这里。',
+        finalBuy: '购买会员卡密 <span>↗</span>',
+        footerBrand: '© 2026 AI 会员充值服务',
+        footerTopUp: '充值入口'
       },
+
       en: {
-        brand: 'Membership', navService: 'Services', navProcess: 'Process', navBuy: 'Buy now',
-        eyebrow: 'AI MEMBERSHIP SERVICE', heroTitle: 'Powerful AI,<span>ready to work for you.</span>',
+        brand: 'Membership',
+        navService: 'Services',
+        navProcess: 'Process',
+        navBuy: 'Buy now',
+        eyebrow: 'AI MEMBERSHIP SERVICE',
+        heroTitle: 'Powerful AI,<span>ready to work for you.</span>',
         heroCopy: 'Buy a code, submit your recharge, and get started. Every step is clear and traceable.',
-        buyCard: 'Buy membership code <span>↗</span>', topUp: 'Have a code? Recharge now', heroNote: 'Self-service available · Order details stay clear',
-        deviceTitle: 'Start your membership,<br>right here.', deviceSub: 'No complicated process. Choose a service, submit your code, and start using it.',
-        serviceStatusLabel: 'Service status', orderLabel: 'Order handling', orderValue: 'Easy to track', afterSalesLabel: 'Service assurance', afterSalesValue: 'Clear process',
-        serviceTitle: 'Less waiting.<br><span>More certainty.</span>', serviceIntro: 'From purchase to recharge, every important detail is easy to find. Simple, direct, and clear.',
-        featureBuyTitle: 'Buy yourself', featureBuyText: 'Open the purchase portal, choose a membership service, and receive your code after payment.',
-        featureTopUpTitle: 'Recharge quickly', featureTopUpText: 'Enter your code and submit it. Follow the on-screen steps to complete verification.',
-        featureTrackTitle: 'Easy to track', featureTrackText: 'Order details stay clear, so recharge status and next steps are easy to follow.',
-        processTitle: 'Three steps,<br><span>and you are ready.</span>', processIntro: 'No learning curve. Follow the steps and you are done.',
-        step1Number: '01 / Choose', step1Title: 'Choose your service', step1Text: 'Open the purchase portal, complete payment, and save your code.',
-        step2Number: '02 / Recharge', step2Title: 'Submit your code', step2Text: 'Open the recharge portal, enter your code, and submit it.',
-        step3Number: '03 / Use', step3Title: 'Start using AI', step3Text: 'After recharge is complete, sign in and start your experience.',
-        finalTitle: 'Start now,<br>and focus on what matters.', finalText: 'Purchase and recharge, all in one place.', finalBuy: 'Buy membership code <span>↗</span>',
-        footerBrand: '© 2026 AI Membership Service', footerTopUp: 'Recharge portal',
+        buyCard: 'Buy membership code <span>↗</span>',
+        topUp: 'Have a code? Recharge now',
+        heroNote: 'Self-service available · Order details stay clear',
+        deviceTitle: 'Start your membership,<br>right here.',
+        deviceSub: 'No complicated process. Choose a service, submit your code, and start using it.',
+        serviceStatusLabel: 'Service status',
+        orderLabel: 'Order handling',
+        orderValue: 'Easy to track',
+        afterSalesLabel: 'Service assurance',
+        afterSalesValue: 'Clear process',
+        serviceTitle: 'Less waiting.<br><span>More certainty.</span>',
+        serviceIntro: 'From purchase to recharge, every important detail is easy to find. Simple, direct, and clear.',
+        featureBuyTitle: 'Buy yourself',
+        featureBuyText: 'Open the purchase portal, choose a membership service, and receive your code after payment.',
+        featureTopUpTitle: 'Recharge quickly',
+        featureTopUpText: 'Enter your code and submit it. Follow the on-screen steps to complete verification.',
+        featureTrackTitle: 'Easy to track',
+        featureTrackText: 'Order details stay clear, so recharge status and next steps are easy to follow.',
+        processTitle: 'Three steps,<br><span>and you are ready.</span>',
+        processIntro: 'No learning curve. Follow the steps and you are done.',
+        step1Number: '01 / Choose',
+        step1Title: 'Choose your service',
+        step1Text: 'Open the purchase portal, complete payment, and save your code.',
+        step2Number: '02 / Recharge',
+        step2Title: 'Submit your code',
+        step2Text: 'Open the recharge portal, enter your code, and submit it.',
+        step3Number: '03 / Use',
+        step3Title: 'Start using AI',
+        step3Text: 'After recharge is complete, sign in and start your experience.',
+        finalTitle: 'Start now,<br>and focus on what matters.',
+        finalText: 'Purchase and recharge, all in one place.',
+        finalBuy: 'Buy membership code <span>↗</span>',
+        footerBrand: '© 2026 AI Membership Service',
+        footerTopUp: 'Recharge portal'
       },
+
       'zh-TW': {
-        brand: '會員充值', navService: '服務', navProcess: '流程', navBuy: '立即購買',
-        eyebrow: 'AI 會員充值服務', heroTitle: '讓強大的 AI，<span>馬上為你工作。</span>',
+        brand: '會員充值',
+        navService: '服務',
+        navProcess: '流程',
+        navBuy: '立即購買',
+        eyebrow: 'AI 會員充值服務',
+        heroTitle: '讓強大的 AI，<span>馬上為你工作。</span>',
         heroCopy: '購買卡密，提交充值，完成開通。每一步都清楚，每一筆都可查。',
-        buyCard: '購買會員卡密 <span>↗</span>', topUp: '已有卡密，立即充值', heroNote: '支援自助操作 · 訂單資訊清晰可查',
-        deviceTitle: '開通會員，<br>從這裡開始。', deviceSub: '不用等待複雜流程。選擇所需服務，提交卡密，完成後即可開始使用。',
-        serviceStatusLabel: '服務狀態', orderLabel: '訂單處理', orderValue: '清晰可查', afterSalesLabel: '服務保障', afterSalesValue: '流程清晰',
-        serviceTitle: '少一點等待。<br><span>多一點確定。</span>', serviceIntro: '從購買到充值，重要資訊都放在你看得到的地方。簡單、直接、好用。',
-        featureBuyTitle: '自助購買', featureBuyText: '打開購買入口，選擇適合你的會員服務，付款後即可獲得卡密。',
-        featureTopUpTitle: '快速充值', featureTopUpText: '輸入卡密並提交，按照頁面提示完成驗證，操作過程清楚明白。',
-        featureTrackTitle: '清晰可查', featureTrackText: '訂單資訊清楚可查，充值狀態和後續使用更安心。',
-        processTitle: '三步，<br><span>完成開通。</span>', processIntro: '不需要學習成本，也不需要反覆確認。照著做，就能完成。',
-        step1Number: '01 / 購買', step1Title: '選好你的服務', step1Text: '進入購買入口，完成付款並保存卡密資訊。',
-        step2Number: '02 / 充值', step2Title: '提交卡密', step2Text: '進入充值入口，填寫卡密並按照提示提交。',
-        step3Number: '03 / 使用', step3Title: '開始使用 AI', step3Text: '充值完成後登入對應帳號，即可開始體驗。',
-        finalTitle: '現在開始，<br>把時間留給更重要的事。', finalText: '購買、充值，都在這裡。', finalBuy: '購買會員卡密 <span>↗</span>',
-        footerBrand: '© 2026 AI 會員充值服務', footerTopUp: '充值入口',
+        buyCard: '購買會員卡密 <span>↗</span>',
+        topUp: '已有卡密，立即充值',
+        heroNote: '支援自助操作 · 訂單資訊清晰可查',
+        deviceTitle: '開通會員，<br>從這裡開始。',
+        deviceSub: '不用等待複雜流程。選擇所需服務，提交卡密，完成後即可開始使用。',
+        serviceStatusLabel: '服務狀態',
+        orderLabel: '訂單處理',
+        orderValue: '清晰可查',
+        afterSalesLabel: '服務保障',
+        afterSalesValue: '流程清晰',
+        serviceTitle: '少一點等待。<br><span>多一點確定。</span>',
+        serviceIntro: '從購買到充值，重要資訊都放在你看得到的地方。簡單、直接、好用。',
+        featureBuyTitle: '自助購買',
+        featureBuyText: '打開購買入口，選擇適合你的會員服務，付款後即可獲得卡密。',
+        featureTopUpTitle: '快速充值',
+        featureTopUpText: '輸入卡密並提交，按照頁面提示完成驗證，操作過程清楚明白。',
+        featureTrackTitle: '清晰可查',
+        featureTrackText: '訂單資訊清楚可查，充值狀態和後續使用更安心。',
+        processTitle: '三步，<br><span>完成開通。</span>',
+        processIntro: '不需要學習成本，也不需要反覆確認。照著做，就能完成。',
+        step1Number: '01 / 購買',
+        step1Title: '選好你的服務',
+        step1Text: '進入購買入口，完成付款並保存卡密資訊。',
+        step2Number: '02 / 充值',
+        step2Title: '提交卡密',
+        step2Text: '進入充值入口，填寫卡密並按照提示提交。',
+        step3Number: '03 / 使用',
+        step3Title: '開始使用 AI',
+        step3Text: '充值完成後登入對應帳號，即可開始體驗。',
+        finalTitle: '現在開始，<br>把時間留給更重要的事。',
+        finalText: '購買、充值，都在這裡。',
+        finalBuy: '購買會員卡密 <span>↗</span>',
+        footerBrand: '© 2026 AI 會員充值服務',
+        footerTopUp: '充值入口'
       },
+
       ja: {
-        brand: 'メンバーシップ', navService: 'サービス', navProcess: 'ご利用の流れ', navBuy: '今すぐ購入',
-        eyebrow: 'AI MEMBERSHIP SERVICE', heroTitle: '強力な AI を、<span>あなたの仕事に。</span>',
+        brand: 'メンバーシップ',
+        navService: 'サービス',
+        navProcess: 'ご利用の流れ',
+        navBuy: '今すぐ購入',
+        eyebrow: 'AI MEMBERSHIP SERVICE',
+        heroTitle: '強力な AI を、<span>あなたの仕事に。</span>',
         heroCopy: 'コードを購入してチャージを申請。わかりやすい手順で、すぐに使い始められます。',
-        buyCard: 'メンバーシップを購入 <span>↗</span>', topUp: 'コードをお持ちの方はこちら', heroNote: 'セルフサービス対応 · 注文情報を確認できます',
-        deviceTitle: 'メンバーシップを、<br>ここから始める。', deviceSub: '複雑な手順は必要ありません。サービスを選び、コードを送信してすぐに利用できます。',
-        serviceStatusLabel: 'サービス状態', orderLabel: '注文処理', orderValue: '確認できます', afterSalesLabel: 'サービス保証', afterSalesValue: '明確な手順',
-        serviceTitle: '待ち時間を減らし、<br><span>確かな体験を。</span>', serviceIntro: '購入からチャージまで、必要な情報をわかりやすくまとめています。シンプルで快適です。',
-        featureBuyTitle: 'かんたん購入', featureBuyText: '購入ページでサービスを選び、お支払い後にコードを受け取れます。',
-        featureTopUpTitle: 'すぐにチャージ', featureTopUpText: 'コードを入力して送信。画面の案内に沿って認証を完了します。',
-        featureTrackTitle: '確認しやすい', featureTrackText: '注文情報が明確なので、チャージ状況をいつでも確認できます。',
-        processTitle: '3ステップで、<br><span>すぐに利用開始。</span>', processIntro: '難しい操作はありません。手順に沿って進めるだけです。',
-        step1Number: '01 / 購入', step1Title: 'サービスを選ぶ', step1Text: '購入ページでお支払いを完了し、コードを保存します。',
-        step2Number: '02 / チャージ', step2Title: 'コードを送信', step2Text: 'チャージページでコードを入力し、送信します。',
-        step3Number: '03 / 利用', step3Title: 'AI を使い始める', step3Text: 'チャージ完了後にログインして、すぐに利用できます。',
-        finalTitle: '今すぐ始めて、<br>大切なことに集中しましょう。', finalText: '購入もチャージも、ここで完結します。', finalBuy: 'メンバーシップを購入 <span>↗</span>',
-        footerBrand: '© 2026 AI Membership Service', footerTopUp: 'チャージページ',
-      },
+        buyCard: 'メンバーシップを購入 <span>↗</span>',
+        topUp: 'コードをお持ちの方はこちら',
+        heroNote: 'セルフサービス対応 · 注文情報を確認できます',
+        deviceTitle: 'メンバーシップを、<br>ここから始める。',
+        deviceSub: '複雑な手順は必要ありません。サービスを選び、コードを送信してすぐに利用できます。',
+        serviceStatusLabel: 'サービス状態',
+        orderLabel: '注文処理',
+        orderValue: '確認できます',
+        afterSalesLabel: 'サービス保証',
+        afterSalesValue: '明確な手順',
+        serviceTitle: '待ち時間を減らし、<br><span>確かな体験を。</span>',
+        serviceIntro: '購入からチャージまで、必要な情報をわかりやすくまとめています。シンプルで快適です。',
+        featureBuyTitle: 'かんたん購入',
+        featureBuyText: '購入ページでサービスを選び、お支払い後にコードを受け取れます。',
+        featureTopUpTitle: 'すぐにチャージ',
+        featureTopUpText: 'コードを入力して送信。画面の案内に沿って認証を完了します。',
+        featureTrackTitle: '確認しやすい',
+        featureTrackText: '注文情報が明確なので、チャージ状況をいつでも確認できます。',
+        processTitle: '3ステップで、<br><span>すぐに利用開始。</span>',
+        processIntro: '難しい操作はありません。手順に沿って進めるだけです。',
+        step1Number: '01 / 購入',
+        step1Title: 'サービスを選ぶ',
+        step1Text: '購入ページでお支払いを完了し、コードを保存します。',
+        step2Number: '02 / チャージ',
+        step2Title: 'コードを送信',
+        step2Text: 'チャージページでコードを入力し、送信します。',
+        step3Number: '03 / 利用',
+        step3Title: 'AI を使い始める',
+        step3Text: 'チャージ完了後にログインして、すぐに利用できます。',
+        finalTitle: '今すぐ始めて、<br>大切なことに集中しましょう。',
+        finalText: '購入もチャージも、ここで完結します。',
+        finalBuy: 'メンバーシップを購入 <span>↗</span>',
+        footerBrand: '© 2026 AI Membership Service',
+        footerTopUp: 'チャージページ'
+      }
     };
+
     let currentLanguage = 'zh';
-    try { currentLanguage = ['zh', 'zh-TW', 'en', 'ja'].includes(localStorage.getItem('ai-membership-language')) ? localStorage.getItem('ai-membership-language') : 'zh'; } catch {}
+
+    try {
+      const savedLanguage = localStorage.getItem('ai-membership-language');
+      if (['zh', 'zh-TW', 'en', 'ja'].includes(savedLanguage)) {
+        currentLanguage = savedLanguage;
+      }
+    } catch {}
+
     const languageToggle = document.querySelector('#languageToggle');
     const languagePicker = document.querySelector('#languagePicker');
     const languageOptions = document.querySelectorAll('.language-option');
 
     function setLanguage(language) {
       currentLanguage = translations[language] ? language : 'zh';
-      document.documentElement.lang = currentLanguage === 'en' ? 'en' : currentLanguage === 'ja' ? 'ja' : currentLanguage === 'zh-TW' ? 'zh-TW' : 'zh-CN';
+
+      document.documentElement.lang =
+        currentLanguage === 'en' ? 'en' :
+        currentLanguage === 'ja' ? 'ja' :
+        currentLanguage === 'zh-TW' ? 'zh-TW' : 'zh-CN';
+
       document.querySelectorAll('[data-i18n]').forEach((node) => {
         const value = translations[currentLanguage][node.dataset.i18n];
         if (value !== undefined) node.innerHTML = value;
       });
-      languageToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path></svg>';
-      languageToggle.setAttribute('aria-label', currentLanguage === 'en' ? 'Choose language' : currentLanguage === 'ja' ? '言語を選択' : '选择语言');
+
+      languageToggle.setAttribute(
+        'aria-label',
+        currentLanguage === 'en' ? 'Choose language' :
+        currentLanguage === 'ja' ? '言語を選択' : '选择语言'
+      );
+
       languageOptions.forEach((option) => {
         const active = option.dataset.language === currentLanguage;
         option.classList.toggle('active', active);
         option.setAttribute('aria-checked', String(active));
       });
-      const titles = { zh: 'AI 会员充值｜简单、可靠、立即开通', 'zh-TW': 'AI 會員充值｜簡單、可靠、立即開通', en: 'AI Membership | Simple, reliable, ready to start', ja: 'AI メンバーシップ｜シンプルで安心、すぐに開始' };
+
+      const titles = {
+        zh: 'AI 会员充值｜简单、可靠、立即开通',
+        'zh-TW': 'AI 會員充值｜簡單、可靠、立即開通',
+        en: 'AI Membership | Simple, reliable, ready to start',
+        ja: 'AI メンバーシップ｜シンプルで安心、すぐに開始'
+      };
+
       document.title = titles[currentLanguage];
-      try { localStorage.setItem('ai-membership-language', currentLanguage); } catch {}
+
+      try {
+        localStorage.setItem('ai-membership-language', currentLanguage);
+      } catch {}
+
       updateServiceStatus();
     }
 
     languageToggle.addEventListener('click', (event) => {
       event.stopPropagation();
       languagePicker.classList.toggle('open');
-      languageToggle.setAttribute('aria-expanded', String(languagePicker.classList.contains('open')));
+      languageToggle.setAttribute(
+        'aria-expanded',
+        String(languagePicker.classList.contains('open'))
+      );
     });
-    languageOptions.forEach((option) => option.addEventListener('click', () => {
-      setLanguage(option.dataset.language);
-      languagePicker.classList.remove('open');
-      languageToggle.setAttribute('aria-expanded', 'false');
-    }));
+
+    languageOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        setLanguage(option.dataset.language);
+        languagePicker.classList.remove('open');
+        languageToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
     document.addEventListener('click', (event) => {
       if (!languagePicker.contains(event.target)) {
         languagePicker.classList.remove('open');
         languageToggle.setAttribute('aria-expanded', 'false');
       }
     });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         languagePicker.classList.remove('open');
@@ -367,19 +620,34 @@
       const parts = new Intl.DateTimeFormat('zh-CN', {
         timeZone: 'Asia/Shanghai',
         hour: '2-digit',
-        hour12: false,
+        hour12: false
       }).formatToParts(new Date());
-      const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? 0);
+
+      const hour = Number(
+        parts.find((part) => part.type === 'hour')?.value ?? 0
+      );
+
       const isOnline = hour >= 10 && hour < 23;
+
       serviceStatus.classList.toggle('offline', !isOnline);
+
       const statusLabels = {
         zh: { online: '在线', offline: '不在线' },
         'zh-TW': { online: '在線', offline: '離線' },
         en: { online: 'Online', offline: 'Offline' },
-        ja: { online: 'オンライン', offline: 'オフライン' },
+        ja: { online: 'オンライン', offline: 'オフライン' }
       }[currentLanguage];
-      statusText.textContent = isOnline ? statusLabels.online : statusLabels.offline;
-      serviceStatus.setAttribute('aria-label', isOnline ? `${statusLabels.online}, 10:00–23:00` : `${statusLabels.offline}, 10:00–23:00`);
+
+      statusText.textContent = isOnline
+        ? statusLabels.online
+        : statusLabels.offline;
+
+      serviceStatus.setAttribute(
+        'aria-label',
+        isOnline
+          ? `${statusLabels.online}, 10:00–23:00`
+          : `${statusLabels.offline}, 10:00–23:00`
+      );
     }
 
     setLanguage(currentLanguage);
@@ -387,9 +655,17 @@
     window.setInterval(updateServiceStatus, 60 * 1000);
 
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
     }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+      revealObserver.observe(element);
+    });
   </script>
 </body>
 </html>
