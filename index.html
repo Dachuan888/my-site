@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -23,576 +24,146 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-width: 320px;
-      color: var(--ink);
-      background: var(--bg);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { margin: 0; min-width: 320px; color: var(--ink); background: var(--bg); line-height: 1.5; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; border: 0; cursor: pointer; }
     img { max-width: 100%; display: block; }
     .wrap { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
 
-    .topbar {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 20;
-      height: 52px;
-      background: rgba(245,245,247,.76);
-      border-bottom: 1px solid rgba(0,0,0,.06);
-      backdrop-filter: saturate(180%) blur(22px);
-    }
-
-    .nav {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .logo-mark {
-      width: 22px;
-      height: 22px;
-      border-radius: 7px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background: #1d1d1f;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
+    .topbar { position: fixed; inset: 0 0 auto; z-index: 20; height: 52px; background: rgba(245,245,247,.76); border-bottom: 1px solid rgba(0,0,0,.06); backdrop-filter: saturate(180%) blur(22px); }
+    .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .logo { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+    .logo-mark { width: 22px; height: 22px; display: grid; place-items: center; color: var(--ink); background: transparent; font-size: 22px; line-height: 1; font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: 13px; }
+    .nav-links a { transition: color .2s ease; }
     .nav-links a:hover { color: var(--ink); }
-
-    .nav-cta {
-      color: #fff;
-      background: var(--blue);
-      padding: 7px 15px;
-      border-radius: 999px;
-      font-size: 13px;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      background: var(--blue-dark);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .nav-cta { color: #fff; background: var(--blue); padding: 7px 15px; border-radius: 999px; font-size: 13px; transition: transform .2s ease, background .2s ease; }
+    .nav-cta:hover { transform: translateY(-1px); background: var(--blue-dark); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
     .language-picker { position: relative; }
-
-    .lang-toggle {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      color: var(--muted);
-      background: rgba(255,255,255,.62);
-      transition: .2s ease;
-    }
-
-    .lang-toggle:hover {
-      color: var(--ink);
-      background: #fff;
-      transform: translateY(-1px);
-    }
-
-    .lang-toggle svg {
-      width: 17px;
-      height: 17px;
-      display: block;
-    }
-
-    .language-menu {
-      position: absolute;
-      top: calc(100% + 9px);
-      right: 0;
-      z-index: 30;
-      display: none;
-      width: 178px;
-      padding: 6px;
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 16px;
-      background: rgba(247,252,248,.96);
-      box-shadow: 0 18px 42px rgba(22,50,35,.16);
-      backdrop-filter: blur(18px);
-    }
-
-    .language-picker.open .language-menu {
-      display: grid;
-      gap: 2px;
-    }
-
-    .language-option {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px;
-      border-radius: 10px;
-      color: #385144;
-      background: transparent;
-      text-align: left;
-      font-size: 13px;
-    }
-
-    .language-option:hover,
-    .language-option.active {
-      color: #233b2c;
-      background: #dfece1;
-    }
-
-    .language-option .check {
-      color: #3b8056;
-      font-size: 16px;
-      opacity: 0;
-    }
-
+    .lang-toggle { width: 36px; height: 36px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: rgba(255,255,255,.62); transition: .2s ease; }
+    .lang-toggle:hover { color: var(--ink); background: #fff; transform: translateY(-1px); }
+    .lang-toggle svg { width: 17px; height: 17px; display: block; }
+    .language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 30; display: none; width: 178px; padding: 6px; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; background: rgba(247,252,248,.96); box-shadow: 0 18px 42px rgba(22,50,35,.16); backdrop-filter: blur(18px); }
+    .language-picker.open .language-menu { display: grid; gap: 2px; }
+    .language-option { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 10px; border-radius: 10px; color: #385144; background: transparent; text-align: left; font-size: 13px; transition: background .18s ease, color .18s ease; }
+    .language-option:hover, .language-option.active { color: #233b2c; background: #dfece1; }
+    .language-option .check { color: #3b8056; font-size: 16px; line-height: 1; opacity: 0; }
     .language-option.active .check { opacity: 1; }
 
-    .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 820px;
-      padding: 180px 0 100px;
-      text-align: center;
-    }
+    .hero { position: relative; isolation: isolate; overflow: hidden; min-height: 820px; padding: 180px 0 100px; text-align: center; background: radial-gradient(circle at 50% 22%, rgba(255,255,255,.68), transparent 34%), radial-gradient(circle at 12% 76%, rgba(225,217,255,.30), transparent 28%), var(--bg); background-size: 125% 125%, 118% 118%, auto; background-position: 50% 22%, 12% 76%, 0 0; animation: heroAmbient 11s ease-in-out infinite; }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; filter: blur(5px); pointer-events: none; will-change: transform, opacity; }
+    .hero::before { width: 680px; height: 680px; left: 50%; top: 70px; transform: translateX(-50%); background: radial-gradient(circle, rgba(216,233,255,.88) 0%, rgba(241,247,255,.46) 42%, transparent 70%); animation: heroBreath 12s ease-in-out infinite; }
+    .hero::after { width: 300px; height: 300px; right: 10%; left: auto; top: 300px; background: radial-gradient(circle, rgba(224,214,255,.38), transparent 70%); animation: heroDrift 17s ease-in-out infinite; }
+    .hero-content { position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13px; letter-spacing: .06em; margin-bottom: 26px; }
+    .eyebrow .brand-symbol { width: 18px; height: 18px; display: inline-grid; place-items: center; color: var(--ink); font-size: 19px; line-height: 1; }
+    h1 { max-width: 820px; margin: 0 auto; font-size: clamp(46px, 8vw, 92px); line-height: .98; letter-spacing: -.075em; font-weight: 700; }
+    h1 span { display: block; color: #6e6e73; }
+    .hero-copy { max-width: 560px; margin: 30px auto 0; color: var(--muted); font-size: clamp(17px, 2vw, 21px); letter-spacing: -.02em; }
+    .hero-actions { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
+    .primary, .secondary { min-height: 48px; padding: 0 23px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .primary { color: #fff; background: var(--blue); box-shadow: 0 12px 24px rgba(0,113,227,.2); }
+    .primary:hover { transform: translateY(-2px); background: var(--blue-dark); box-shadow: 0 16px 30px rgba(0,113,227,.27); }
+    .secondary { color: var(--blue); background: rgba(255,255,255,.58); border: 1px solid rgba(0,113,227,.22); }
+    .secondary:hover { transform: translateY(-2px); background: #fff; }
+    .hero-note { margin-top: 18px; color: #8a8a8f; font-size: 12px; }
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(5px);
-      pointer-events: none;
-    }
-
-    .hero::before {
-      width: 680px;
-      height: 680px;
-      left: 50%;
-      top: 70px;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(216,233,255,.9) 0%, rgba(241,247,255,.48) 42%, transparent 70%);
-    }
-
-    .hero::after {
-      width: 260px;
-      height: 260px;
-      left: 12%;
-      top: 270px;
-      background: radial-gradient(circle, rgba(232,219,255,.42), transparent 70%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: .06em;
-      margin-bottom: 26px;
-    }
-
-    .eyebrow i {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22a06b;
-      box-shadow: 0 0 0 5px rgba(34,160,107,.12);
-    }
-
-    h1 {
-      max-width: 820px;
-      margin: 0 auto;
-      font-size: clamp(46px, 8vw, 92px);
-      line-height: .98;
-      letter-spacing: -.075em;
-      font-weight: 700;
-    }
-
-    h1 span {
-      display: block;
-      color: #6e6e73;
-    }
-
-    .hero-copy {
-      max-width: 560px;
-      margin: 30px auto 0;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 21px);
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      margin-top: 38px;
-      flex-wrap: wrap;
-    }
-
-    .primary,
-    .secondary {
-      min-height: 48px;
-      padding: 0 23px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 16px;
-    }
-
-    .primary {
-      color: #fff;
-      background: var(--blue);
-      box-shadow: 0 12px 24px rgba(0,113,227,.2);
-    }
-
-    .primary:hover {
-      transform: translateY(-2px);
-      background: var(--blue-dark);
-    }
-
-    .secondary {
-      color: var(--blue);
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(0,113,227,.22);
-    }
-
-    .secondary:hover {
-      transform: translateY(-2px);
-      background: #fff;
-    }
-
-    .hero-note {
-      margin-top: 18px;
-      color: #8a8a8f;
-      font-size: 12px;
-    }
-
-    .device {
-      position: relative;
-      width: min(940px, 92%);
-      min-height: 320px;
-      margin: 74px auto 0;
-      border-radius: 30px;
-      background: linear-gradient(145deg, rgba(255,255,255,.86), rgba(234,239,246,.68));
-      border: 1px solid rgba(255,255,255,.9);
-      box-shadow: 0 45px 100px rgba(55,77,105,.18), inset 0 1px 0 rgba(255,255,255,.9);
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .device::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 24%, rgba(255,255,255,.62) 50%, transparent 76%);
-      transform: translateX(-100%);
-      animation: sweep 7s ease-in-out infinite;
-    }
-
-    .device-top {
-      height: 46px;
-      padding: 0 22px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      border-bottom: 1px solid rgba(0,0,0,.06);
-      background: rgba(255,255,255,.34);
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #c5cad1;
-    }
-
-    .device-body {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      align-items: center;
-      gap: 36px;
-      padding: 38px 52px 44px;
-    }
-
-    .device-kicker {
-      color: var(--blue);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .device-title {
-      margin: 9px 0 12px;
-      font-size: clamp(27px, 4vw, 46px);
-      line-height: 1.03;
-      letter-spacing: -.06em;
-    }
-
-    .device-sub {
-      max-width: 440px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .mini-card {
-      padding: 22px;
-      border-radius: 20px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: 0 16px 35px rgba(31,45,63,.08);
-    }
-
-    .mini-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(0,0,0,.07);
-      font-size: 14px;
-    }
-
-    .mini-row:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
+    .device { position: relative; width: min(940px, 92%); min-height: 320px; margin: 74px auto 0; border-radius: 30px; background: linear-gradient(145deg, rgba(255,255,255,.86), rgba(234,239,246,.68)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 45px 100px rgba(55,77,105,.18), inset 0 1px 0 rgba(255,255,255,.9); overflow: hidden; text-align: left; }
+    .device::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 24%, rgba(255,255,255,.62) 50%, transparent 76%); transform: translateX(-100%); animation: sweep 7s ease-in-out infinite; }
+    .device-top { height: 46px; padding: 0 22px; display: flex; align-items: center; gap: 7px; border-bottom: 1px solid rgba(0,0,0,.06); background: rgba(255,255,255,.34); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #c5cad1; }
+    .device-body { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 36px; padding: 38px 52px 44px; }
+    .device-kicker { color: var(--blue); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .device-title { margin: 9px 0 12px; font-size: clamp(27px, 4vw, 46px); line-height: 1.03; letter-spacing: -.06em; }
+    .device-sub { max-width: 440px; color: var(--muted); font-size: 15px; }
+    .mini-card { padding: 22px; border-radius: 20px; background: rgba(255,255,255,.72); border: 1px solid rgba(0,0,0,.06); box-shadow: 0 16px 35px rgba(31,45,63,.08); }
+    .mini-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,.07); font-size: 14px; }
+    .mini-row:last-child { border-bottom: 0; padding-bottom: 0; }
     .mini-row:first-child { padding-top: 0; }
     .mini-label { color: var(--muted); }
     .mini-value { font-weight: 600; }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--green);
-      font-size: 12px;
-    }
-
-    .status i {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
+    .status { display: inline-flex; align-items: center; gap: 6px; color: var(--green); font-size: 12px; }
+    .status i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
     .status.offline { color: #d14343; }
 
     .section { padding: 118px 0; }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 42px;
-    }
-
-    .section-title {
-      max-width: 580px;
-      margin: 0;
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.04;
-      letter-spacing: -.065em;
-    }
-
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 42px; }
+    .section-title { max-width: 580px; margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.04; letter-spacing: -.065em; }
     .section-title span { color: var(--muted); }
+    .section-intro { max-width: 300px; color: var(--muted); font-size: 15px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .feature { min-height: 260px; padding: 27px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 24px; background: var(--white); box-shadow: 0 14px 40px rgba(0,0,0,.045); transition: transform .25s ease, box-shadow .25s ease; }
+    .feature:hover { transform: translateY(-5px); box-shadow: 0 24px 55px rgba(0,0,0,.09); }
+    .feature-icon { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: #f0f5ff; color: var(--blue); font-size: 17px; }
+    .feature h3 { margin: 26px 0 8px; font-size: 20px; letter-spacing: -.035em; }
+    .feature p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .section-intro {
-      max-width: 300px;
-      color: var(--muted);
-      font-size: 15px;
-    }
+    .process { padding: 78px 0 72px; background: linear-gradient(180deg, #e3efff 0%, #edf5ff 100%); color: var(--ink); }
+    .process .section-title { max-width: 520px; color: var(--ink); font-size: clamp(34px, 4.2vw, 52px); }
+    .process .section-title span { color: #6e6e73; }
+    .process .section-intro { color: var(--muted); }
+    .process-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; border-top: 1px solid rgba(0,113,227,.20); }
+    .step { padding: 20px 0 6px; border-bottom: 0; }
+    .step:not(:last-child) { margin-right: 0; border-right: 0; }
+    .step-number { color: var(--blue); font-size: 29px; line-height: 1; font-weight: 500; letter-spacing: -.04em; }
+    .step h3 { margin: 20px 0 8px; color: var(--ink); font-size: 16px; letter-spacing: -.025em; }
+    .step p { max-width: 260px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
+    .assurance { padding: 92px 0 96px; background: #fff; border-top: 1px solid #e6edf7; border-bottom: 1px solid #e6edf7; }
+    .assurance-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 74px; align-items: start; }
+    .assurance-kicker { display: inline-flex; align-items: center; gap: 10px; color: var(--blue); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
+    .assurance-kicker i { width: 18px; height: 1px; display: block; background: var(--blue); }
+    .assurance-title { margin: 20px 0 0; font-size: clamp(38px, 5vw, 58px); line-height: 1.08; letter-spacing: -.065em; }
+    .assurance-title span { color: #77747a; }
+    .assurance-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 44px; }
+    .assurance-card { min-height: 190px; display: flex; flex-direction: column; align-items: flex-start; }
+    .assurance-card h3 { margin: 0; font-size: 18px; letter-spacing: -.035em; }
+    .assurance-card p { max-width: 270px; margin: 14px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .assurance-link { display: inline-flex; align-items: center; gap: 10px; margin-top: auto; color: var(--blue); font-size: 13px; font-weight: 600; }
+    .assurance-link span { font-size: 21px; line-height: .7; transition: transform .2s ease; }
+    .assurance-link:hover span { transform: translateX(4px); }
 
-    .feature {
-      min-height: 260px;
-      padding: 27px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 24px;
-      background: var(--white);
-      box-shadow: 0 14px 40px rgba(0,0,0,.045);
-    }
-
-    .feature:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 24px 55px rgba(0,0,0,.09);
-    }
-
-    .feature-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: #f0f5ff;
-      color: var(--blue);
-      font-size: 17px;
-    }
-
-    .feature h3 {
-      margin: 26px 0 8px;
-      font-size: 20px;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .process {
-      padding: 118px 0;
-      background: #fff;
-    }
-
-    .process-list {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .step {
-      padding: 28px 26px 18px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .step:not(:last-child) {
-      margin-right: 28px;
-      border-right: 1px solid var(--line);
-    }
-
-    .step-number {
-      color: var(--blue);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .step h3 {
-      margin: 48px 0 8px;
-      font-size: 24px;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .final {
-      padding: 150px 0 166px;
-      text-align: center;
-      background: radial-gradient(circle at 50% 0%, #e5f0ff, transparent 48%), #f5f5f7;
-    }
-
-    .final h2 {
-      max-width: 720px;
-      margin: 0 auto;
-      font-size: clamp(38px, 6vw, 70px);
-      line-height: 1.02;
-    }
-
-    .final p {
-      margin: 22px auto 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .final .hero-actions { margin-top: 30px; }
-
-    footer {
-      padding: 24px 0;
-      color: #8a8a8f;
-      background: #fff;
-      border-top: 1px solid var(--line);
-      font-size: 12px;
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-    }
-
+    .faq-section { padding: 92px 0 96px; background: #f2f7fd; border-top: 1px solid #dce9f8; }
+    .faq-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 74px; align-items: start; }
+    .faq-kicker { display: inline-flex; align-items: center; gap: 10px; color: var(--blue); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
+    .faq-kicker i { width: 18px; height: 1px; display: block; background: var(--blue); }
+    .faq-title { max-width: 430px; margin: 20px 0 0; font-size: clamp(38px, 4.6vw, 56px); line-height: 1.08; letter-spacing: -.065em; }
+    .faq-title span { color: #77747a; }
+    .faq-list { border-top: 1px solid #d5e2f0; }
+    .faq-item { border-bottom: 1px solid #d5e2f0; }
+    .faq-question { width: 100%; min-height: 62px; padding: 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; color: #55535a; background: transparent; text-align: left; font-size: 14px; }
+    .faq-question:hover { color: var(--ink); }
+    .faq-plus { flex: 0 0 auto; color: var(--blue); font-size: 21px; font-weight: 300; transition: transform .2s ease; }
+    .faq-item.open .faq-plus { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; color: #77747a; font-size: 13px; line-height: 1.75; transition: max-height .28s ease, padding .28s ease; }
+    .faq-answer p { margin: 0; padding: 0 40px 0 0; }
+    .faq-item.open .faq-answer { max-height: 120px; padding-bottom: 18px; }
+    footer { padding: 24px 0; color: #8a8a8f; background: #fff; border-top: 1px solid var(--line); font-size: 12px; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .footer-links { display: flex; gap: 18px; }
     .footer-links a:hover { color: var(--ink); }
+    .footer-legal { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: #9a9aa0; font-size: 11px; line-height: 1.75; text-align: center; }
 
-    .footer-legal {
-      margin: 16px 0 0;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-      color: #9a9aa0;
-      font-size: 11px;
-      line-height: 1.75;
-      text-align: center;
-    }
+    .modal { position: fixed; inset: 0; z-index: 60; display: none; place-items: center; padding: 22px; background: rgba(0,0,0,.34); backdrop-filter: blur(12px); }
+    .modal.open { display: grid; }
+    .modal-card { width: min(390px, 100%); padding: 28px; border-radius: 25px; background: #fff; box-shadow: 0 30px 90px rgba(0,0,0,.22); text-align: center; animation: pop .25s ease; }
+    .modal-card h3 { margin: 0; font-size: 24px; letter-spacing: -.045em; }
+    .modal-card p { margin: 10px 0 18px; color: var(--muted); font-size: 14px; }
+    .qr { width: 190px; height: 190px; object-fit: cover; margin: 0 auto 18px; border-radius: 14px; background: #f3f3f3; }
+    .close { width: 100%; min-height: 43px; border-radius: 999px; color: var(--ink); background: #f2f2f2; }
+    .close:hover { background: #e9e9eb; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .75s ease, transform .75s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    @keyframes sweep {
-      0%, 25% { transform: translateX(-100%); }
-      55%, 100% { transform: translateX(100%); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes sweep { 0%, 25% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
+    @keyframes pop { from { opacity: 0; transform: scale(.96) translateY(8px); } to { opacity: 1; transform: none; } }
+    @keyframes heroBreath { 0%, 100% { transform: translateX(-50%) scale(1); opacity: .72; } 50% { transform: translateX(-46%) scale(1.08); opacity: 1; } }
+    @keyframes heroDrift { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: .55; } 50% { transform: translate3d(-90px, -42px, 0) scale(1.16); opacity: .86; } }
+    @keyframes heroAmbient { 0%, 100% { background-position: 50% 22%, 12% 76%, 0 0; } 50% { background-position: 56% 28%, 24% 68%, 0 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero, .hero::before, .hero::after, .device::before { animation: none; }
     }
 
     @media (max-width: 780px) {
@@ -602,529 +173,509 @@
       .hero { min-height: 720px; padding: 145px 0 70px; }
       .hero::before { width: 500px; height: 500px; }
       .device { margin-top: 55px; border-radius: 22px; }
-      .device-body {
-        grid-template-columns: 1fr;
-        gap: 26px;
-        padding: 30px 24px 28px;
-      }
+      .device-body { grid-template-columns: 1fr; gap: 26px; padding: 30px 24px 28px; }
       .section, .process { padding: 82px 0; }
-      .section-head {
-        display: block;
-        margin-bottom: 28px;
-      }
+      .section-head { display: block; margin-bottom: 28px; }
       .section-intro { margin-top: 17px; }
       .feature-grid, .process-list { grid-template-columns: 1fr; }
       .feature { min-height: 210px; }
-      .step {
-        padding: 26px 0;
-        border-right: 0 !important;
-        margin-right: 0 !important;
-      }
+      .step { padding: 26px 0; border-right: 0 !important; margin-right: 0 !important; }
       .step h3 { margin-top: 24px; }
-      .final { padding: 100px 0 115px; }
+      .assurance { padding: 82px 0 88px; }
+      .assurance-grid, .assurance-cards { grid-template-columns: 1fr; }
+      .assurance-grid { gap: 44px; }
+      .assurance-cards { gap: 32px; }
+      .assurance-card { min-height: 0; }
+      .assurance-link { margin-top: 22px; }
+      .faq-section { padding: 82px 0 84px; }
+      .faq-grid { grid-template-columns: 1fr; gap: 44px; }
+      .faq-question { min-height: 58px; }
       .footer-row { display: block; }
       .footer-links { margin-top: 9px; }
     }
+
+    /* Galaxy Ai · integrated deep-space theme */
+    :root {
+      --bg: #080b16;
+      --surface: rgba(17, 24, 43, .76);
+      --white: rgba(17, 23, 40, .82);
+      --ink: #f4f6fb;
+      --muted: #a8b0c2;
+      --line: rgba(220, 230, 255, .14);
+      --blue: #8abfff;
+      --blue-dark: #b4d7ff;
+      --green: #65d6a0;
+      --shadow: 0 26px 80px rgba(0, 0, 0, .28);
+    }
+    html { scroll-padding-top: 72px; }
+    body { color: var(--ink); background: #080b16; }
+    .topbar { background: rgba(7, 10, 20, .72); border-bottom-color: rgba(230, 238, 255, .1); }
+    .logo-mark { color: #dceaff; text-shadow: 0 0 18px rgba(103, 170, 255, .52); }
+    .nav-links { color: rgba(235, 241, 255, .72); }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta { background: #0878ed; }
+    .lang-toggle { color: #d4dced; border-color: rgba(226, 235, 255, .2); background: rgba(20, 28, 48, .68); }
+    .lang-toggle:hover { color: #fff; background: rgba(48, 62, 94, .78); }
+    .language-menu { border-color: rgba(222, 232, 255, .16); background: rgba(12, 18, 33, .96); box-shadow: 0 18px 42px rgba(0, 0, 0, .42); }
+    .language-option { color: #d4dced; }
+    .language-option:hover, .language-option.active { color: #fff; background: rgba(83, 134, 213, .2); }
+    .language-option .check { color: #91c4ff; }
+
+    .hero { display: flex; align-items: center; min-height: max(760px, 100svh); padding: 112px 0 88px; text-align: left; background: #080b16; animation: none; }
+    .hero::before, .hero::after { display: none; }
+    .hero-scene { position: absolute; z-index: -2; inset: -3%; background: url("galaxy-background-chosen.png") center center / cover no-repeat; animation: cosmic-drift 38s ease-in-out infinite alternate; will-change: transform; }
+    .hero-shade { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(5, 8, 18, .88) 0%, rgba(5, 8, 18, .72) 27%, rgba(5, 8, 18, .34) 48%, rgba(5, 8, 18, .03) 78%), linear-gradient(180deg, rgba(5, 8, 18, .2), transparent 26%, transparent 68%, #080b16 100%); pointer-events: none; }
+    #starfield { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; }
+    .hero-content { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr); grid-template-areas: "eyebrow device" "title device" "copy device" "actions device" "note device"; align-items: center; column-gap: clamp(30px, 6vw, 88px); row-gap: 0; padding-top: 24px; }
+    .eyebrow { grid-area: eyebrow; margin: 0 0 16px; color: rgba(239, 244, 255, .78); font-size: 12px; letter-spacing: .1em; }
+    .eyebrow .brand-symbol { color: #e6efff; text-shadow: 0 0 16px rgba(122, 181, 255, .62); }
+    h1 { grid-area: title; max-width: 660px; margin: 0 0 20px; font-size: clamp(54px, 6vw, 82px); line-height: .99; letter-spacing: -.072em; text-wrap: balance; }
+    h1 span { color: #c6d7f3; }
+    .hero-copy { grid-area: copy; max-width: 560px; margin: 0; color: rgba(235, 239, 249, .78); font-size: clamp(15px, 1.45vw, 18px); line-height: 1.75; }
+    .hero-actions { grid-area: actions; justify-content: flex-start; gap: 11px; margin-top: 28px; }
+    .primary, .secondary { min-height: 46px; padding: 0 19px; font-size: 14px; }
+    .primary { background: #0878ed; box-shadow: 0 12px 34px rgba(0, 104, 226, .3); }
+    .primary:hover { background: #1687ff; }
+    .secondary { color: #f5f8ff; border-color: rgba(229, 238, 255, .38); background: rgba(11, 17, 35, .38); backdrop-filter: blur(12px); }
+    .secondary:hover { color: #fff; border-color: rgba(255, 255, 255, .72); background: rgba(31, 42, 72, .58); }
+    .hero-note { grid-area: note; margin-top: 14px; color: rgba(231, 236, 249, .58); }
+    .device { grid-area: device; width: 100%; min-height: 0; margin: 0; border-color: rgba(220, 232, 255, .18); border-radius: 26px; background: linear-gradient(145deg, rgba(21, 29, 49, .74), rgba(10, 15, 29, .55)); box-shadow: 0 35px 100px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .1); backdrop-filter: blur(18px) saturate(125%); }
+    .device::before { background: linear-gradient(120deg, transparent 24%, rgba(197, 219, 255, .14) 50%, transparent 76%); }
+    .device-top { border-bottom-color: rgba(225, 235, 255, .1); background: rgba(255, 255, 255, .035); }
+    .device-body { grid-template-columns: 1fr; gap: 22px; padding: 28px; }
+    .device-kicker { color: #8abfff; }
+    .device-title { max-width: 430px; font-size: clamp(27px, 3vw, 38px); }
+    .device-sub { color: rgba(219, 227, 242, .7); font-size: 13px; line-height: 1.7; }
+    .mini-card { padding: 16px 18px; border-color: rgba(224, 233, 255, .12); background: rgba(7, 12, 25, .48); box-shadow: none; }
+    .mini-row { border-bottom-color: rgba(225, 235, 255, .1); font-size: 13px; }
+    .status.offline { color: #ff777e; }
+
+    .section, .assurance, .faq-section { position: relative; overflow: hidden; color: var(--ink); background: #080b16; border-color: rgba(225, 235, 255, .08); }
+    .section::before, .assurance::before, .faq-section::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 52% 0%, rgba(63, 92, 160, .12), transparent 60%); }
+    .section > .wrap, .assurance > .wrap, .faq-section > .wrap { position: relative; z-index: 1; }
+    .section-title span, .assurance-title span, .faq-title span { color: #9aa4b9; }
+    .section-intro, .feature p, .assurance-card p { color: var(--muted); }
+    .feature { border: 1px solid rgba(220, 230, 255, .1); border-radius: 20px; background: linear-gradient(145deg, rgba(21, 29, 49, .88), rgba(12, 17, 31, .9)); box-shadow: 0 18px 48px rgba(0, 0, 0, .16); }
+    .feature:hover { border-color: rgba(138, 191, 255, .3); box-shadow: 0 24px 55px rgba(0, 0, 0, .26); }
+    .feature-icon { background: rgba(69, 123, 207, .18); color: #9bc8ff; }
+    .process { position: relative; overflow: hidden; color: var(--ink); border-top: 1px solid rgba(255, 255, 255, .06); border-bottom: 1px solid rgba(255, 255, 255, .07); background: linear-gradient(180deg, #0b1020 0%, #0a0e1b 100%); }
+    .process::before { content: ""; position: absolute; inset: 0; opacity: .12; pointer-events: none; background: url("galaxy-background-chosen.png") center 58% / cover no-repeat; mask-image: linear-gradient(180deg, transparent, #000 28%, #000 72%, transparent); }
+    .process > .wrap { position: relative; z-index: 1; }
+    .process .section-title, .process .step h3 { color: var(--ink); }
+    .process .section-title span { color: #9aa4b9; }
+    .process .section-intro, .step p { color: var(--muted); }
+    .process-list { border-top-color: rgba(220, 230, 255, .16); }
+    .step-number { color: #8abfff; }
+    .assurance { background: #090d19; border-top-color: rgba(225, 235, 255, .07); border-bottom-color: rgba(225, 235, 255, .07); }
+    .assurance-kicker, .faq-kicker { color: #8abfff; }
+    .assurance-kicker i, .faq-kicker i { background: #8abfff; }
+    .assurance-card h3 { color: #edf2fc; }
+    .assurance-link { color: #8abfff; }
+    .faq-section { background: #0b1020; border-top-color: rgba(220, 230, 255, .08); }
+    .faq-list, .faq-item { border-color: rgba(220, 230, 255, .14); }
+    .faq-question { color: #c5cddd; }
+    .faq-question:hover { color: #fff; }
+    .faq-plus { color: #8abfff; }
+    .faq-answer { color: #a8b0c2; }
+    footer { color: rgba(220, 227, 242, .55); background: #070910; border-top-color: rgba(255, 255, 255, .09); }
+    .footer-legal { color: rgba(220, 227, 242, .48); border-top-color: rgba(220, 230, 255, .1); }
+    .footer-links a:hover { color: #fff; }
+    .modal-card { color: #f4f6fb; border: 1px solid rgba(220, 230, 255, .14); background: rgba(12, 18, 33, .97); }
+    .modal-card p { color: #a8b0c2; }
+    .close { color: #e7edf9; background: #202a40; }
+    .close:hover { background: #2d3953; }
+    @keyframes cosmic-drift { from { transform: scale(1.02) translate3d(0, 0, 0); } to { transform: scale(1.09) translate3d(-.5%, -.4%, 0); } }
+    @media (max-width: 780px) {
+      .hero { min-height: max(850px, 100svh); padding: 106px 0 92px; align-items: flex-start; }
+      .hero-scene { background-position: 63% center; animation-duration: 50s; }
+      .hero-shade { background: linear-gradient(90deg, rgba(5, 8, 18, .84), rgba(5, 8, 18, .56) 68%, rgba(5, 8, 18, .28)), linear-gradient(180deg, rgba(5, 8, 18, .18), transparent 38%, #080b16 100%); }
+      .hero-content { grid-template-columns: minmax(0, 1fr); grid-template-areas: "eyebrow" "title" "copy" "actions" "note" "device"; row-gap: 0; padding-top: 42px; }
+      .eyebrow { margin-bottom: 12px; }
+      h1 { max-width: 620px; margin-bottom: 16px; font-size: clamp(47px, 10.6vw, 68px); }
+      .hero-copy { max-width: 560px; font-size: 15px; }
+      .hero-actions { margin-top: 22px; }
+      .device { margin-top: 34px; border-radius: 22px; }
+      .device-body { grid-template-columns: 1fr; gap: 18px; padding: 23px 21px; }
+      .device-title { font-size: 29px; }
+      .assurance-grid, .faq-grid { gap: 42px; }
+    }
+    @media (max-width: 430px) {
+      .hero-actions { gap: 9px; }
+      .primary, .secondary { padding: 0 14px; font-size: 13px; }
+      .device-body { padding: 21px 17px; }
+      .mini-card { padding: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-scene { animation: none; }
+      .device::before { animation: none; }
+    }
+
+    /* Reference-matched header and open galaxy hero; lower sections stay as-is. */
+    .topbar .wrap, .hero-content, .hero-trustline { width: min(1184px, calc(100% - 88px)); }
+    .nav { position: relative; }
+    .logo { gap: 9px; color: #f5f7ff; }
+    .logo-mark { width: 28px; height: 28px; border-radius: 9px; color: #fff; background: linear-gradient(145deg, #438cff, #6347ef); font-size: 16px; font-weight: 700; text-shadow: none; box-shadow: 0 0 24px rgba(76, 139, 255, .28); }
+    .nav-links { position: absolute; left: 50%; transform: translateX(-50%); gap: 22px; font-size: 12px; white-space: nowrap; }
+    .nav-cta { display: inline-flex; align-items: center; min-height: 38px; padding: 0 18px; }
+    .hero { min-height: max(780px, 100svh); padding: 84px 0 96px; }
+    .hero-content { display: block; padding-top: 8px; }
+    .eyebrow { gap: 10px; margin: 0 0 26px; font-size: 13px; letter-spacing: .055em; }
+    .eyebrow-dot { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: #81e9ff; box-shadow: 0 0 15px 4px rgba(85, 178, 255, .68); }
+    h1 { max-width: 790px; margin: 0 0 22px; font-size: clamp(58px, 7.6vw, 100px); line-height: .96; letter-spacing: -.075em; }
+    h1 span { color: #ccdafe; text-shadow: 0 4px 32px rgba(99, 151, 255, .18); }
+    .hero-copy { max-width: 640px; margin: 0; color: rgba(235, 239, 249, .78); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.75; letter-spacing: 0; }
+    .hero-actions { justify-content: flex-start; gap: 13px; margin-top: 30px; }
+    .primary, .secondary { min-height: 48px; padding: 0 22px; font-size: 14px; font-weight: 560; }
+    .secondary { gap: 10px; }
+    .hero-actions a[data-i18n="enterprise"] { gap: 3px; }
+    .hero-actions .cart-icon { margin-left: 2px; }
+    .hero-note { margin-top: 16px; color: rgba(231, 236, 249, .57); font-size: 12px; }
+    .hero-trustline { position: absolute; z-index: 2; right: 0; bottom: 25px; left: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: rgba(230, 236, 251, .72); font-size: 12px; letter-spacing: .035em; }
+    .hero-trust-items { display: flex; align-items: center; gap: 0; }
+    .hero-trust-items span + span::before { content: ""; display: inline-block; width: 3px; height: 3px; margin: 0 21px 3px; border-radius: 50%; background: #7ebeff; box-shadow: 0 0 10px #5eaeff; }
+    .scroll-cue { display: flex; align-items: center; gap: 9px; color: rgba(230, 236, 251, .52); font-size: 11px; transition: color .2s ease; }
+    .scroll-cue:hover { color: rgba(255, 255, 255, .9); }
+    .scroll-cue i { position: relative; width: 16px; height: 25px; border: 1px solid rgba(230, 236, 251, .45); border-radius: 10px; }
+    .scroll-cue i::after { position: absolute; top: 5px; left: 6px; width: 2px; height: 5px; border-radius: 2px; background: #c8e5ff; content: ""; animation: scroll-dot 1.5s ease-in-out infinite; }
+    @media (max-width: 780px) {
+      .topbar .wrap, .hero-content, .hero-trustline { width: min(100% - 34px, 640px); }
+      .nav-links { display: none; }
+      .hero { min-height: max(720px, 100svh); padding: 118px 0 108px; align-items: center; }
+      .hero-scene { background-position: 63% center; }
+      .hero-shade { background: linear-gradient(90deg, rgba(5, 8, 18, .78), rgba(5, 8, 18, .52) 68%, rgba(5, 8, 18, .24)), linear-gradient(180deg, rgba(5, 8, 18, .16), transparent 42%, #080b16 100%); }
+      .hero-content { padding-top: 0; }
+      .eyebrow { margin-bottom: 18px; font-size: 11px; }
+      h1 { max-width: 650px; margin-bottom: 18px; font-size: clamp(48px, 11.5vw, 74px); }
+      .hero-copy { max-width: 550px; font-size: 15px; }
+      .hero-actions { gap: 10px; margin-top: 24px; }
+      .hero-trustline { bottom: 23px; align-items: flex-start; flex-direction: column; gap: 14px; }
+      .hero-trust-items span + span::before { margin-right: 12px; margin-left: 12px; }
+      .scroll-cue { font-size: 10px; }
+    }
+    @media (min-width: 781px) and (max-width: 940px) {
+      .nav-links { gap: 12px; font-size: 11px; }
+    }
+    @media (max-width: 430px) {
+      .hero { min-height: max(700px, 100svh); padding-top: 96px; padding-bottom: 118px; }
+      .hero-actions { gap: 9px; }
+      .primary, .secondary { min-height: 44px; padding: 0 16px; font-size: 13px; }
+      .hero-trustline { font-size: 10px; }
+      .hero-trust-items span + span::before { margin-right: 8px; margin-left: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-cue i::after { animation: none; }
+    }
+    /* Editorial middle sections: quiet, continuous, and image-led. */
+    .editorial-section { position: relative; overflow: hidden; padding: 86px 0 82px; color: var(--ink); background: #080b16; border-top: 1px solid rgba(225, 235, 255, .07); }
+    .editorial-section::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 18% 0%, rgba(66, 105, 180, .09), transparent 54%); }
+    .editorial-section > .wrap, .process > .wrap { position: relative; z-index: 1; }
+    .editorial-head { display: grid; grid-template-columns: 1fr minmax(260px, .72fr); align-items: end; gap: 42px; margin-bottom: 42px; }
+    .editorial-heading { min-width: 0; }
+    .editorial-kicker { display: block; margin-bottom: 18px; color: #8abfff; font-size: 12px; font-weight: 650; letter-spacing: .08em; }
+    .editorial-section .section-title, .process .section-title { max-width: 650px; margin: 0; color: #f4f6fb; font-size: clamp(38px, 5vw, 62px); line-height: .99; letter-spacing: -.068em; }
+    .editorial-section .section-title span, .process .section-title span { color: #9aa4b9; }
+    .editorial-section .section-intro, .process .section-intro { max-width: 390px; margin: 0 0 5px auto; color: rgba(220, 227, 242, .72); font-size: 14px; line-height: 1.8; }
+    .editorial-columns, .process-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid rgba(220, 230, 255, .16); border-bottom: 1px solid rgba(220, 230, 255, .16); }
+    .editorial-item, .step { min-width: 0; min-height: 174px; padding: 22px 27px 24px 0; border: 0; }
+    .editorial-item + .editorial-item, .step + .step { padding-left: 27px; border-left: 1px solid rgba(220, 230, 255, .14); }
+    .editorial-label, .step-number { color: #8abfff; font-size: 12px; font-weight: 650; letter-spacing: .04em; }
+    .editorial-item h3, .step h3 { margin: 36px 0 8px; color: #f0f3fa; font-size: 19px; line-height: 1.3; letter-spacing: -.035em; }
+    .editorial-item p, .step p { max-width: 330px; margin: 0; color: rgba(220, 227, 242, .68); font-size: 13px; line-height: 1.75; }
+    .process { padding: 76px 0 78px; border-top: 1px solid rgba(225, 235, 255, .07); border-bottom: 1px solid rgba(225, 235, 255, .08); background: #090d19; }
+    .process::before { opacity: .17; background: url("galaxy-background-chosen.png") center 58% / cover no-repeat; mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 84%, transparent 100%); }
+    .process .editorial-head { margin-bottom: 38px; }
+    .process .section-intro { color: rgba(220, 227, 242, .74); }
+    .process-list { border-top-color: rgba(220, 230, 255, .2); border-bottom-color: rgba(220, 230, 255, .2); }
+    .step { min-height: 164px; padding-top: 21px; }
+    .step-number { font-size: 12px; }
+    .step h3 { margin-top: 34px; }
+    .assurance { background: #090d19; border-top-color: rgba(225, 235, 255, .08); }
+    .cart-icon { display: inline-block; margin-left: 5px; font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif; font-size: .96em; vertical-align: -1px; }
+    @media (max-width: 780px) {
+      .editorial-section, .process { padding: 64px 0; }
+      .editorial-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
+      .editorial-section .section-intro, .process .section-intro { max-width: 560px; margin: 0; }
+      .editorial-item, .step { min-height: 0; padding: 19px 0 22px; }
+      .editorial-item + .editorial-item, .step + .step { padding-left: 18px; }
+      .editorial-item h3, .step h3 { margin-top: 26px; font-size: 17px; }
+      .editorial-item p, .step p { font-size: 12px; }
+    }
+    @media (max-width: 560px) {
+      .editorial-columns, .process-list { grid-template-columns: 1fr; }
+      .editorial-item, .step { padding: 18px 0 20px; }
+      .editorial-item + .editorial-item, .step + .step { padding-left: 0; border-top: 1px solid rgba(220, 230, 255, .14); border-left: 0; }
+      .editorial-item h3, .step h3 { margin-top: 16px; }
+      .editorial-section .section-title, .process .section-title { font-size: clamp(38px, 10vw, 50px); }
+    }
+    .hero-particle-field { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-particle { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #c9edff; opacity: .28; box-shadow: 0 0 9px 2px rgba(100, 181, 255, .72), 0 0 22px rgba(101, 106, 255, .32); animation: galaxy-particle-float var(--duration, 9s) ease-in-out var(--delay, 0s) infinite; will-change: transform, opacity; }
+    .hero-particle:nth-child(1) { left: 13%; top: 22%; --dx: 24px; --dy: -15px; --duration: 8s; --delay: -2s; }
+    .hero-particle:nth-child(2) { left: 34%; top: 14%; width: 2px; height: 2px; --dx: -18px; --dy: 23px; --duration: 11s; --delay: -7s; }
+    .hero-particle:nth-child(3) { left: 54%; top: 28%; --dx: 17px; --dy: 19px; --duration: 9.5s; --delay: -4s; }
+    .hero-particle:nth-child(4) { left: 76%; top: 19%; width: 2px; height: 2px; --dx: -23px; --dy: -17px; --duration: 10.5s; --delay: -6s; }
+    .hero-particle:nth-child(5) { left: 85%; top: 61%; --dx: -19px; --dy: 21px; --duration: 8.8s; --delay: -1s; }
+    .hero-particle:nth-child(6) { left: 28%; top: 73%; width: 2px; height: 2px; --dx: 20px; --dy: -18px; --duration: 12s; --delay: -9s; }
+    @keyframes galaxy-particle-float { 0%, 100% { transform: translate3d(0, 0, 0) scale(.65); opacity: .22; } 50% { transform: translate3d(var(--dx), var(--dy), 0) scale(1.45); opacity: .95; } }
+    @media (prefers-reduced-motion: reduce) { .hero-particle { animation: none; opacity: .58; } }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap nav">
-      <a class="logo" href="#top" aria-label="AI 会员充值首页">
-        <span class="logo-mark">AI</span>
-        <span data-i18n="brand">会员充值</span>
-      </a>
-
+      <a class="logo" href="#top" aria-label="Galaxy Ai 首页"><span class="logo-mark" aria-hidden="true">✦</span><span data-i18n="brand">Galaxy Ai</span></a>
       <nav class="nav-links" aria-label="主导航">
+        <a href="#top" data-i18n="navHome">首页</a>
         <a href="#service" data-i18n="navService">服务</a>
-        <a href="#process" data-i18n="navProcess">流程</a>
+        <a href="#process" data-i18n="navPurchase">购买与交付</a>
+        <a href="#assurance" data-i18n="navAssurance">服务与保障</a>
+        <a href="#support" data-i18n="navFaq">常见问题</a>
       </nav>
-
-      <div class="nav-actions">
-        <div class="language-picker" id="languagePicker">
-          <button class="lang-toggle" id="languageToggle" type="button" aria-label="切换语言" aria-expanded="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="8.5"></circle>
-              <path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path>
-            </svg>
-          </button>
-
-          <div class="language-menu" id="languageMenu" role="menu">
-            <button class="language-option" type="button" role="menuitemradio" data-language="zh" aria-checked="true">简体中文 <span class="check">●</span></button>
-            <button class="language-option" type="button" role="menuitemradio" data-language="zh-TW" aria-checked="false">繁體中文 <span class="check">●</span></button>
-            <button class="language-option" type="button" role="menuitemradio" data-language="en" aria-checked="false">English <span class="check">●</span></button>
-            <button class="language-option" type="button" role="menuitemradio" data-language="ja" aria-checked="false">日本語 <span class="check">●</span></button>
-          </div>
-        </div>
-
-        <a class="nav-cta" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="navBuy">
-          立即购买
-        </a>
-      </div>
+      <div class="nav-actions"><div class="language-picker" id="languagePicker"><button class="lang-toggle" id="languageToggle" type="button" aria-label="切换语言" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path></svg></button><div class="language-menu" id="languageMenu" role="menu"><button class="language-option" type="button" role="menuitemradio" data-language="zh" aria-checked="true">简体中文 <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="zh-TW" aria-checked="false">繁體中文 <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="en" aria-checked="false">English <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="ja" aria-checked="false">日本語 <span class="check">●</span></button></div></div><a class="nav-cta" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="navBuy">前往商城 →</a></div>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
+      <div class="hero-scene" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <canvas id="starfield" aria-hidden="true"></canvas>
+      <div class="hero-particle-field" aria-hidden="true"><i class="hero-particle"></i><i class="hero-particle"></i><i class="hero-particle"></i><i class="hero-particle"></i><i class="hero-particle"></i><i class="hero-particle"></i></div>
       <div class="wrap hero-content">
-        <div class="eyebrow">
-          <i></i>
-          <span data-i18n="eyebrow">AI 会员充值服务</span>
-        </div>
-
-        <h1 data-i18n="heroTitle">
-          让强大的 AI，<span>马上为你工作。</span>
-        </h1>
-
-        <p class="hero-copy" data-i18n="heroCopy">
-          购买卡密，提交充值，完成开通。每一步都清楚，每一笔都可查。
-        </p>
-
+        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span data-i18n="eyebrow">Galaxy Ai</span></div>
+        <h1 data-i18n="heroTitle">让强大的 AI，<span>马上为你工作。</span></h1>
+        <p class="hero-copy" data-i18n="heroCopy">安全下单，价格透明，售后支持。<br>从选购到售后，每一步都清楚，每一笔都可查。</p>
         <div class="hero-actions">
-          <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="buyCard">
-            购买会员卡密 <span>↗</span>
-          </a>
-
-          <a class="secondary" href="https://skyhplus.cc/" target="_blank" rel="noreferrer" data-i18n="topUp">
-            已有卡密，立即充值
-          </a>
+          <a class="primary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="buyCard">前往商城 <span>→</span></a>
+          <a class="secondary" href="#service" data-i18n="learnServices">了解服务 ↓</a>
+          <a class="secondary" href="enterprise.html" data-i18n="enterprise">企业采购 <span class="cart-icon" aria-hidden="true">🛒</span></a>
         </div>
-
-        <div class="hero-note" data-i18n="heroNote">
-          支持自助操作 · 订单信息清晰可查
-        </div>
-
-        <div class="device reveal" aria-label="充值服务预览">
-          <div class="device-top">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-
-          <div class="device-body">
-            <div>
-              <div class="device-kicker">A simple way to start</div>
-
-              <div class="device-title" data-i18n="deviceTitle">
-                开通会员，<br>从这里开始。
-              </div>
-
-              <div class="device-sub" data-i18n="deviceSub">
-                不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。
-              </div>
-            </div>
-
-            <div class="mini-card">
-              <div class="mini-row">
-                <span class="mini-label" data-i18n="serviceStatusLabel">服务状态</span>
-                <span class="status" id="serviceStatus">
-                  <i></i>
-                  <span class="status-text">在线</span>
-                </span>
-              </div>
-
-              <div class="mini-row">
-                <span class="mini-label" data-i18n="orderLabel">订单处理</span>
-                <span class="mini-value" data-i18n="orderValue">清晰可查</span>
-              </div>
-
-              <div class="mini-row">
-                <span class="mini-label" data-i18n="afterSalesLabel">服务保障</span>
-                <span class="mini-value" data-i18n="afterSalesValue">流程清晰</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="hero-note" data-i18n="heroNote">精选数字服务 · 清晰订单流程 · 售后支持</div>
       </div>
+      <div class="wrap hero-trustline"><div class="hero-trust-items"><span data-i18n="trustSecure">安全下单</span><span data-i18n="trustPrice">价格透明</span><span data-i18n="trustSupport">售后支持</span></div><a class="scroll-cue" href="#service"><i aria-hidden="true"></i><span data-i18n="scrollCue">向下了解 Galaxy Ai</span></a></div>
     </section>
 
-    <section class="section" id="service">
+    <section class="editorial-section" id="service">
       <div class="wrap">
-        <div class="section-head reveal">
-          <h2 class="section-title" data-i18n="serviceTitle">
-            少一点等待。<br><span>多一点确定。</span>
-          </h2>
-
-          <p class="section-intro" data-i18n="serviceIntro">
-            从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。
-          </p>
+        <div class="editorial-head reveal">
+          <div class="editorial-heading">
+            <span class="editorial-kicker" data-i18n="serviceKicker">安心选购 · 清晰服务</span>
+            <h2 class="section-title" data-i18n="serviceTitle">从选购到售后，<br><span>每一步都更放心。</span></h2>
+          </div>
+          <p class="section-intro" data-i18n="serviceIntro">从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。</p>
         </div>
-
-        <div class="feature-grid">
-          <article class="feature reveal">
-            <div>
-              <div class="feature-icon">⌁</div>
-              <h3 data-i18n="featureBuyTitle">自助购买</h3>
-              <p data-i18n="featureBuyText">
-                打开购买入口，选择适合你的会员服务，支付后即可获得卡密。
-              </p>
-            </div>
-          </article>
-
-          <article class="feature reveal">
-            <div>
-              <div class="feature-icon">✓</div>
-              <h3 data-i18n="featureTopUpTitle">快速充值</h3>
-              <p data-i18n="featureTopUpText">
-                输入卡密并提交，按页面提示完成验证，操作过程清楚明白。
-              </p>
-            </div>
-          </article>
-
-          <article class="feature reveal">
-            <div>
-              <div class="feature-icon">↗</div>
-              <h3 data-i18n="featureTrackTitle">清晰可查</h3>
-              <p data-i18n="featureTrackText">
-                订单信息清楚可查，充值状态和后续使用更安心。
-              </p>
-            </div>
-          </article>
+        <div class="editorial-columns">
+          <article class="editorial-item reveal"><div class="editorial-label" data-i18n="serviceBuyLabel">01 / 商品信息</div><h3 data-i18n="featureBuyTitle">清晰了解再选购</h3><p data-i18n="featureBuyText">商品内容与服务说明一目了然，按需选择，不必猜测。</p></article>
+          <article class="editorial-item reveal"><div class="editorial-label" data-i18n="serviceTopUpLabel">02 / 订单流程</div><h3 data-i18n="featureTopUpTitle">每笔订单都可查</h3><p data-i18n="featureTopUpText">选购、支付与交付信息清晰呈现，重要进度随时查看。</p></article>
+          <article class="editorial-item reveal"><div class="editorial-label" data-i18n="serviceTrackLabel">03 / 售后支持</div><h3 data-i18n="featureTrackTitle">遇到问题有人协助</h3><p data-i18n="featureTrackText">购买或使用过程中遇到疑问，可通过商城服务入口寻求帮助。</p></article>
         </div>
       </div>
     </section>
 
     <section class="process" id="process">
       <div class="wrap">
-        <div class="section-head reveal">
-          <h2 class="section-title" data-i18n="processTitle">
-            三步，<br><span>完成开通。</span>
-          </h2>
-
-          <p class="section-intro" data-i18n="processIntro">
-            不需要学习成本，也不需要反复确认。照着做，就能完成。
-          </p>
+        <div class="editorial-head reveal">
+          <div class="editorial-heading">
+            <span class="editorial-kicker" data-i18n="processKicker">购买与交付</span>
+            <h2 class="section-title" data-i18n="processTitle">三步完成，<br><span>清晰透明。</span></h2>
+          </div>
+          <p class="section-intro" data-i18n="processIntro">选购、支付与交付，都在商城订单中清楚可查。按页面提示完成操作即可。</p>
         </div>
-
         <div class="process-list">
-          <article class="step reveal">
-            <div class="step-number" data-i18n="step1Number">01 / 购买</div>
-            <h3 data-i18n="step1Title">选好你的服务</h3>
-            <p data-i18n="step1Text">
-              进入购买入口，完成支付并保存卡密信息。
-            </p>
-          </article>
+          <article class="step reveal"><div class="step-number" data-i18n="step1Number">01 / 选购</div><h3 data-i18n="step1Title">选择所需服务</h3><p data-i18n="step1Text">进入商城浏览商品，确认内容与服务说明。</p></article>
+          <article class="step reveal"><div class="step-number" data-i18n="step2Number">02 / 支付</div><h3 data-i18n="step2Title">按提示完成下单</h3><p data-i18n="step2Text">在商品页面提交订单并完成支付，流程清晰可循。</p></article>
+          <article class="step reveal"><div class="step-number" data-i18n="step3Number">03 / 交付</div><h3 data-i18n="step3Title">查看订单与交付</h3><p data-i18n="step3Text">登录商城查看订单状态、交付信息与后续支持。</p></article>
+        </div>
+      </div>
+    </section>
 
-          <article class="step reveal">
-            <div class="step-number" data-i18n="step2Number">02 / 充值</div>
-            <h3 data-i18n="step2Title">提交卡密</h3>
-            <p data-i18n="step2Text">
-              进入充值入口，填写卡密并按提示提交。
-            </p>
+    <section class="assurance" id="assurance">
+      <div class="wrap assurance-grid">
+        <div class="assurance-intro reveal">
+          <div class="assurance-kicker"><i></i><span data-i18n="assuranceKicker">服务与保障</span></div>
+          <h2 class="assurance-title" data-i18n="assuranceTitle">有问题，<br><span>我们在这里。</span></h2>
+        </div>
+        <div class="assurance-cards">
+          <article class="assurance-card reveal">
+            <h3 data-i18n="orderTitle">订单与支付</h3>
+            <p data-i18n="orderText">查看订单状态与交付进度，商城订单信息清楚可查。</p>
+            <a class="assurance-link" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="orderLink">查看订单和交付 <span>→</span></a>
           </article>
-
-          <article class="step reveal">
-            <div class="step-number" data-i18n="step3Number">03 / 使用</div>
-            <h3 data-i18n="step3Title">开始使用 AI</h3>
-            <p data-i18n="step3Text">
-              充值完成后登录对应账号，即可开始体验。
-            </p>
+          <article class="assurance-card reveal">
+            <h3 data-i18n="supportTitle">售后与人工支持</h3>
+            <p data-i18n="supportText">售前咨询、商品说明和售后问题，可通过官方售后渠道处理。</p>
+            <a class="assurance-link" href="#service" data-i18n="supportLink">查看帮助和支持 <span>→</span></a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="final" id="support">
-      <div class="wrap reveal">
-        <h2 data-i18n="finalTitle">
-          现在开始，<br>把时间留给更重要的事。
-        </h2>
+    <section class="faq-section" id="support">
+      <div class="wrap faq-grid">
+        <div class="faq-intro reveal">
+          <div class="faq-kicker"><i></i><span data-i18n="faqKicker">常见问题</span></div>
+          <h2 class="faq-title" data-i18n="faqTitle">你可能关心的，<br><span>都在这里。</span></h2>
+        </div>
 
-        <p data-i18n="finalText">
-          购买、充值，都在这里。
-        </p>
-
-        <div class="hero-actions">
-          <a class="primary" href="https://www.gpt-plus.lat" target="_blank" rel="noreferrer" data-i18n="finalBuy">
-            购买会员卡密 <span>↗</span>
-          </a>
+        <div class="faq-list">
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq1Question">在哪里查看商品与可购买状态？</span><span class="faq-plus">+</span></button>
+            <div class="faq-answer"><p data-i18n="faq1Answer">进入商城页面即可查看当前商品、价格和可购买状态。</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq2Question">不确定该选哪一种？</span><span class="faq-plus">+</span></button>
+            <div class="faq-answer"><p data-i18n="faq2Answer">可以根据使用需求选择对应服务，订单页面会展示清晰的商品说明。</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq3Question">付款和订单在哪里完成？</span><span class="faq-plus">+</span></button>
+            <div class="faq-answer"><p data-i18n="faq3Answer">商品选购、支付和订单查询都在商城完成，状态会在订单中同步显示。</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq5Question">卡密提交后多久生效？</span><span class="faq-plus">+</span></button>
+            <div class="faq-answer"><p data-i18n="faq5Answer">正常情况下提交后会快速处理，具体状态以订单页面显示为准。</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq6Question">售后从哪里进入？</span><span class="faq-plus">+</span></button>
+            <div class="faq-answer"><p data-i18n="faq6Answer">请通过商城订单进入售后入口，并准备好订单信息以便查询。</p></div>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap footer-row">
-      <span data-i18n="footerBrand">© 2026 AI 会员充值服务</span>
-
-      <div class="footer-links">
-        <a href="https://2025plus.top/" target="_blank" rel="noreferrer" data-i18n="footerTopUp">
-          充值入口
-        </a>
-      </div>
-    </div>
-
-    <div class="wrap">
-      <p class="footer-legal" data-i18n="legalNote">
-        本站所售会员均为正规渠道充值服务，主要面向海外用户、留学生及境外学习 / 工作场景；暂不支持中国大陆地区用户购买或使用。页面内容仅供学习与交流，请遵守所在地法律法规及相关平台服务条款。
-      </p>
-    </div>
+    <div class="wrap footer-row"><span data-i18n="footerBrand">© 2026 Galaxy Ai</span><div class="footer-links"><a href="https://2025plus.top/" target="_blank" rel="noreferrer" data-i18n="footerTopUp">充值入口</a></div></div>
+    <div class="wrap"><p class="footer-legal" data-i18n="legalNote">本站所售会员均为正规渠道充值服务，主要面向海外用户、留学生及境外学习 / 工作场景；暂不支持中国大陆地区用户购买或使用。页面内容仅供学习与交流，请遵守所在地法律法规及相关平台服务条款。</p></div>
   </footer>
 
   <script>
     const translations = {
       zh: {
-        brand: '会员充值',
-        navService: '服务',
-        navProcess: '流程',
-        navBuy: '立即购买',
-        eyebrow: 'AI 会员充值服务',
-        heroTitle: '让强大的 AI，<span>马上为你工作。</span>',
-        heroCopy: '购买卡密，提交充值，完成开通。每一步都清楚，每一笔都可查。',
-        buyCard: '购买会员卡密 <span>↗</span>',
-        topUp: '已有卡密，立即充值',
-        heroNote: '支持自助操作 · 订单信息清晰可查',
-        deviceTitle: '开通会员，<br>从这里开始。',
-        deviceSub: '不用等待复杂流程。选择所需服务，提交卡密，完成后即可开始使用。',
-        serviceStatusLabel: '服务状态',
-        orderLabel: '订单处理',
-        orderValue: '清晰可查',
-        afterSalesLabel: '服务保障',
-        afterSalesValue: '流程清晰',
-        serviceTitle: '少一点等待。<br><span>多一点确定。</span>',
-        serviceIntro: '从购买到充值，重要信息都放在你看得见的地方。简单、直接、好用。',
-        featureBuyTitle: '自助购买',
-        featureBuyText: '打开购买入口，选择适合你的会员服务，支付后即可获得卡密。',
-        featureTopUpTitle: '快速充值',
-        featureTopUpText: '输入卡密并提交，按页面提示完成验证，操作过程清楚明白。',
-        featureTrackTitle: '清晰可查',
-        featureTrackText: '订单信息清楚可查，充值状态和后续使用更安心。',
-        processTitle: '三步，<br><span>完成开通。</span>',
-        processIntro: '不需要学习成本，也不需要反复确认。照着做，就能完成。',
-        step1Number: '01 / 购买',
-        step1Title: '选好你的服务',
-        step1Text: '进入购买入口，完成支付并保存卡密信息。',
-        step2Number: '02 / 充值',
-        step2Title: '提交卡密',
-        step2Text: '进入充值入口，填写卡密并按提示提交。',
-        step3Number: '03 / 使用',
-        step3Title: '开始使用 AI',
-        step3Text: '充值完成后登录对应账号，即可开始体验。',
-        finalTitle: '现在开始，<br>把时间留给更重要的事。',
-        finalText: '购买、充值，都在这里。',
-        finalBuy: '购买会员卡密 <span>↗</span>',
-        footerBrand: '© 2026 AI 会员充值服务',
-        footerTopUp: '充值入口',
-        legalNote: '本站所售会员均为正规渠道充值服务，主要面向海外用户、留学生及境外学习 / 工作场景；暂不支持中国大陆地区用户购买或使用。页面内容仅供学习与交流，请遵守所在地法律法规及相关平台服务条款。'
+        brand: 'Galaxy Ai', navHome: '首页', navService: '服务', navPurchase: '购买与交付', navAssurance: '服务与保障', navFaq: '常见问题', navBuy: '前往商城 →',
+        eyebrow: 'Galaxy Ai', heroTitle: '让强大的 AI，<span>马上为你工作。</span>',
+        heroCopy: '安全下单，价格透明，售后支持。<br>从选购到售后，每一步都清楚，每一笔都可查。',
+        buyCard: '前往商城 <span>→</span>', learnServices: '了解服务 ↓', enterprise: '企业采购 <span class="cart-icon" aria-hidden="true">🛒</span>', heroNote: '精选数字服务 · 清晰订单流程 · 售后支持',
+        trustSecure: '安全下单', trustPrice: '价格透明', trustSupport: '售后支持', scrollCue: '向下了解 Galaxy Ai',
+        deviceTitle: '把复杂流程变简单，<br>把每一次购买变心安。', deviceSub: '清晰的商品信息，透明的订单流程，可靠的售后支持。',
+        serviceStatusLabel: '服务状态', orderLabel: '订单处理', orderValue: '清晰可查', afterSalesLabel: '服务保障', afterSalesValue: '流程清晰',
+        serviceKicker: '安心选购 · 清晰服务', serviceBuyLabel: '01 / 商品信息', serviceTopUpLabel: '02 / 订单流程', serviceTrackLabel: '03 / 售后支持',
+        serviceTitle: '从选购到售后，<br><span>每一步都更放心。</span>', serviceIntro: '把复杂流程变简单，把每一次购买变心安。商品信息、订单进度与服务支持，都清楚地呈现在你面前。',
+        featureBuyTitle: '清晰了解再选购', featureBuyText: '商品内容与服务说明一目了然，按需选择，不必猜测。',
+        featureTopUpTitle: '每笔订单都可查', featureTopUpText: '选购、支付与交付信息清晰呈现，重要进度随时查看。',
+        featureTrackTitle: '遇到问题有人协助', featureTrackText: '购买或使用过程中遇到疑问，可通过商城服务入口寻求帮助。',
+        processKicker: '购买与交付', processTitle: '三步完成，<br><span>清晰透明。</span>', processIntro: '选购、支付与交付，都在商城订单中清楚可查。按页面提示完成操作即可。',
+        assuranceKicker: '服务与保障', assuranceTitle: '有问题，<br><span>我们在这里。</span>', orderTitle: '订单与支付', orderText: '查看订单状态与交付进度，商城订单信息清楚可查。', orderLink: '查看订单和交付 <span>→</span>', supportTitle: '售后与人工支持', supportText: '售前咨询、商品说明和售后问题，可通过官方售后渠道处理。', supportLink: '查看帮助和支持 <span>→</span>',
+        step1Number: '01 / 选购', step1Title: '选择所需服务', step1Text: '进入商城浏览商品，确认内容与服务说明。',
+        step2Number: '02 / 支付', step2Title: '按提示完成下单', step2Text: '在商品页面提交订单并完成支付，流程清晰可循。',
+        step3Number: '03 / 交付', step3Title: '查看订单与交付', step3Text: '登录商城查看订单状态、交付信息与后续支持。',
+        footerBrand: '© 2026 Galaxy Ai', footerTopUp: '充值入口', legalNote: '本站所售会员均为正规渠道充值服务，主要面向海外用户、留学生及境外学习 / 工作场景；暂不支持中国大陆地区用户购买或使用。页面内容仅供学习与交流，请遵守所在地法律法规及相关平台服务条款。',
+        faqKicker: '常见问题', faqTitle: '你可能关心的，<br><span>都在这里。</span>', faq1Question: '在哪里查看商品与可购买状态？', faq1Answer: '进入商城页面即可查看当前商品、价格和可购买状态。', faq2Question: '不确定该选哪一种？', faq2Answer: '可以根据使用需求选择对应服务，订单页面会展示清晰的商品说明。', faq3Question: '付款和订单在哪里完成？', faq3Answer: '商品选购、支付和订单查询都在商城完成，状态会在订单中同步显示。', faq5Question: '卡密提交后多久生效？', faq5Answer: '正常情况下提交后会快速处理，具体状态以订单页面显示为准。', faq6Question: '售后从哪里进入？', faq6Answer: '请通过商城订单进入售后入口，并准备好订单信息以便查询。',
       },
-
       en: {
-        brand: 'Membership',
-        navService: 'Services',
-        navProcess: 'Process',
-        navBuy: 'Buy now',
-        eyebrow: 'AI MEMBERSHIP SERVICE',
-        heroTitle: 'Powerful AI,<span>ready to work for you.</span>',
-        heroCopy: 'Buy a code, submit your recharge, and get started. Every step is clear and traceable.',
-        buyCard: 'Buy membership code <span>↗</span>',
-        topUp: 'Have a code? Recharge now',
-        heroNote: 'Self-service available · Order details stay clear',
-        deviceTitle: 'Start your membership,<br>right here.',
-        deviceSub: 'No complicated process. Choose a service, submit your code, and start using it.',
-        serviceStatusLabel: 'Service status',
-        orderLabel: 'Order handling',
-        orderValue: 'Easy to track',
-        afterSalesLabel: 'Service assurance',
-        afterSalesValue: 'Clear process',
-        serviceTitle: 'Less waiting.<br><span>More certainty.</span>',
-        serviceIntro: 'From purchase to recharge, every important detail is easy to find. Simple, direct, and clear.',
-        featureBuyTitle: 'Buy yourself',
-        featureBuyText: 'Open the purchase portal, choose a membership service, and receive your code after payment.',
-        featureTopUpTitle: 'Recharge quickly',
-        featureTopUpText: 'Enter your code and submit it. Follow the on-screen steps to complete verification.',
-        featureTrackTitle: 'Easy to track',
-        featureTrackText: 'Order details stay clear, so recharge status and next steps are easy to follow.',
-        processTitle: 'Three steps,<br><span>and you are ready.</span>',
-        processIntro: 'No learning curve. Follow the steps and you are done.',
-        step1Number: '01 / Choose',
-        step1Title: 'Choose your service',
-        step1Text: 'Open the purchase portal, complete payment, and save your code.',
-        step2Number: '02 / Recharge',
-        step2Title: 'Submit your code',
-        step2Text: 'Open the recharge portal, enter your code, and submit it.',
-        step3Number: '03 / Use',
-        step3Title: 'Start using AI',
-        step3Text: 'After recharge is complete, sign in and start your experience.',
-        finalTitle: 'Start now,<br>and focus on what matters.',
-        finalText: 'Purchase and recharge, all in one place.',
-        finalBuy: 'Buy membership code <span>↗</span>',
-        footerBrand: '© 2026 AI Membership Service',
-        footerTopUp: 'Recharge portal',
-        legalNote: 'Membership services sold on this site are recharges through legitimate channels, intended mainly for overseas users, international students, and study or work scenarios outside mainland China. Mainland China users are currently not supported. Content is for learning and exchange only. Please comply with local laws and the terms of relevant platforms.'
+        brand: 'Galaxy Ai', navHome: 'Home', navService: 'Services', navPurchase: 'Purchase & delivery', navAssurance: 'Service & assurance', navFaq: 'FAQ', navBuy: 'Visit store →',
+        eyebrow: 'Galaxy Ai', heroTitle: 'Powerful AI,<span>ready to work for you.</span>',
+        heroCopy: 'Secure ordering, clear pricing, and after-sales support.<br>From selection to support, every step is clear and every order is traceable.',
+        buyCard: 'Visit store <span>→</span>', learnServices: 'Learn about services ↓', enterprise: 'Enterprise procurement <span class="cart-icon" aria-hidden="true">🛒</span>', heroNote: 'Curated digital services · Clear orders · After-sales support',
+        trustSecure: 'Secure ordering', trustPrice: 'Clear pricing', trustSupport: 'After-sales support', scrollCue: 'Explore Galaxy Ai',
+        deviceTitle: 'Start your membership,<br>right here.', deviceSub: 'No complicated process. Choose a service, submit your code, and start using it.',
+        serviceStatusLabel: 'Service status', orderLabel: 'Order handling', orderValue: 'Easy to track', afterSalesLabel: 'Service assurance', afterSalesValue: 'Clear process',
+        serviceKicker: 'SHOP WITH CONFIDENCE · CLEAR SERVICE', serviceBuyLabel: '01 / PRODUCT DETAILS', serviceTopUpLabel: '02 / ORDER FLOW', serviceTrackLabel: '03 / AFTER-SALES SUPPORT',
+        serviceTitle: 'From selection to support,<br><span>feel assured at every step.</span>', serviceIntro: 'We make the process simple and every purchase reassuring. Product details, order progress, and support are all clearly in view.',
+        featureBuyTitle: 'Know before you choose', featureBuyText: 'Product details and service terms are clear, so you can choose what suits you with confidence.',
+        featureTopUpTitle: 'Every order is traceable', featureTopUpText: 'Selection, payment, and delivery updates are easy to find whenever you need them.',
+        featureTrackTitle: 'Help when you need it', featureTrackText: 'For questions during purchase or use, reach out through the store’s support entry.',
+        processKicker: 'PURCHASE & DELIVERY', processTitle: 'Three simple steps,<br><span>clear from start to finish.</span>', processIntro: 'Selection, payment, and delivery are clearly shown in your store order. Just follow the on-screen instructions.',
+        assuranceKicker: 'Service & assurance', assuranceTitle: 'Questions?<br><span>We are here.</span>', orderTitle: 'Orders & payments', orderText: 'Check your order status and delivery progress clearly in the store order page.', orderLink: 'View orders and delivery <span>→</span>', supportTitle: 'After-sales support', supportText: 'For pre-sale questions, product details, or after-sales help, contact the official support channel.', supportLink: 'View help and support <span>→</span>',
+        step1Number: '01 / SELECT', step1Title: 'Choose the service you need', step1Text: 'Browse the store and review the product and service details.',
+        step2Number: '02 / PAY', step2Title: 'Place your order', step2Text: 'Submit your order and complete payment as shown on the product page.',
+        step3Number: '03 / DELIVERY', step3Title: 'Track your order', step3Text: 'Sign in to the store to view order status, delivery details, and support.',
+        footerBrand: '© 2026 Galaxy Ai', footerTopUp: 'Recharge portal', legalNote: 'Membership services sold on this site are recharges through legitimate channels, intended mainly for overseas users, international students, and study or work scenarios outside mainland China. Mainland China users are currently not supported. Content is for learning and exchange only. Please comply with local laws and the terms of relevant platforms.',
+        faqKicker: 'Frequently asked', faqTitle: 'Questions you may have,<br><span>answered here.</span>', faq1Question: 'Where can I see products and availability?', faq1Answer: 'Open the store page to view current products, pricing, and availability.', faq2Question: 'Not sure which service to choose?', faq2Answer: 'Choose based on your needs. The order page includes clear product details.', faq3Question: 'Where are payment and orders completed?', faq3Answer: 'Product selection, payment, and order tracking are handled in the store.', faq5Question: 'How long does a submitted code take to activate?', faq5Answer: 'It is normally processed quickly. Check the order page for the latest status.', faq6Question: 'Where do I enter after-sales support?', faq6Answer: 'Open the after-sales entry from your store order and keep your order details ready.',
       },
-
       'zh-TW': {
-        brand: '會員充值',
-        navService: '服務',
-        navProcess: '流程',
-        navBuy: '立即購買',
-        eyebrow: 'AI 會員充值服務',
-        heroTitle: '讓強大的 AI，<span>馬上為你工作。</span>',
-        heroCopy: '購買卡密，提交充值，完成開通。每一步都清楚，每一筆都可查。',
-        buyCard: '購買會員卡密 <span>↗</span>',
-        topUp: '已有卡密，立即充值',
-        heroNote: '支援自助操作 · 訂單資訊清晰可查',
-        deviceTitle: '開通會員，<br>從這裡開始。',
-        deviceSub: '不用等待複雜流程。選擇所需服務，提交卡密，完成後即可開始使用。',
-        serviceStatusLabel: '服務狀態',
-        orderLabel: '訂單處理',
-        orderValue: '清晰可查',
-        afterSalesLabel: '服務保障',
-        afterSalesValue: '流程清晰',
-        serviceTitle: '少一點等待。<br><span>多一點確定。</span>',
-        serviceIntro: '從購買到充值，重要資訊都放在你看得到的地方。簡單、直接、好用。',
-        featureBuyTitle: '自助購買',
-        featureBuyText: '打開購買入口，選擇適合你的會員服務，付款後即可獲得卡密。',
-        featureTopUpTitle: '快速充值',
-        featureTopUpText: '輸入卡密並提交，按照頁面提示完成驗證，操作過程清楚明白。',
-        featureTrackTitle: '清晰可查',
-        featureTrackText: '訂單資訊清楚可查，充值狀態和後續使用更安心。',
-        processTitle: '三步，<br><span>完成開通。</span>',
-        processIntro: '不需要學習成本，也不需要反覆確認。照著做，就能完成。',
-        step1Number: '01 / 購買',
-        step1Title: '選好你的服務',
-        step1Text: '進入購買入口，完成付款並保存卡密資訊。',
-        step2Number: '02 / 充值',
-        step2Title: '提交卡密',
-        step2Text: '進入充值入口，填寫卡密並按照提示提交。',
-        step3Number: '03 / 使用',
-        step3Title: '開始使用 AI',
-        step3Text: '充值完成後登入對應帳號，即可開始體驗。',
-        finalTitle: '現在開始，<br>把時間留給更重要的事。',
-        finalText: '購買、充值，都在這裡。',
-        finalBuy: '購買會員卡密 <span>↗</span>',
-        footerBrand: '© 2026 AI 會員充值服務',
-        footerTopUp: '充值入口',
-        legalNote: '本站所售會員均為正规渠道充值服務，主要面向海外用戶、留學生及境外學習 / 工作場景；暫不支援中國大陸地區用戶購買或使用。頁面內容僅供學習與交流，請遵守所在地法律法規及相關平台服務條款。'
+        brand: 'Galaxy Ai', navHome: '首頁', navService: '服務', navPurchase: '購買與交付', navAssurance: '服務與保障', navFaq: '常見問題', navBuy: '前往商城 →',
+        eyebrow: 'Galaxy Ai', heroTitle: '讓強大的 AI，<span>馬上為你工作。</span>',
+        heroCopy: '安全下單，價格透明，售後支援。<br>從選購到售後，每一步都清楚，每一筆都可查。',
+        buyCard: '前往商城 <span>→</span>', learnServices: '了解服務 ↓', enterprise: '企業採購 <span class="cart-icon" aria-hidden="true">🛒</span>', heroNote: '精選數位服務 · 清晰訂單流程 · 售後支援',
+        trustSecure: '安全下單', trustPrice: '價格透明', trustSupport: '售後支援', scrollCue: '向下了解 Galaxy Ai',
+        deviceTitle: '開通會員，<br>從這裡開始。', deviceSub: '不用等待複雜流程。選擇所需服務，提交卡密，完成後即可開始使用。',
+        serviceStatusLabel: '服務狀態', orderLabel: '訂單處理', orderValue: '清晰可查', afterSalesLabel: '服務保障', afterSalesValue: '流程清晰',
+        serviceKicker: '安心選購 · 清晰服務', serviceBuyLabel: '01 / 商品資訊', serviceTopUpLabel: '02 / 訂單流程', serviceTrackLabel: '03 / 售後支援',
+        serviceTitle: '從選購到售後，<br><span>每一步都更放心。</span>', serviceIntro: '讓流程更簡單，讓每一次購買更安心。商品資訊、訂單進度與服務支援，都清楚呈現在你眼前。',
+        featureBuyTitle: '清楚了解再選購', featureBuyText: '商品內容與服務說明一目了然，依需求選擇，不必猜測。',
+        featureTopUpTitle: '每筆訂單都可查', featureTopUpText: '選購、付款與交付資訊清楚呈現，重要進度隨時查看。',
+        featureTrackTitle: '遇到問題有人協助', featureTrackText: '購買或使用過程中有疑問，可透過商城服務入口尋求協助。',
+        processKicker: '購買與交付', processTitle: '三步完成，<br><span>清晰透明。</span>', processIntro: '選購、付款與交付，都在商城訂單中清楚可查。按照頁面提示完成操作即可。',
+        assuranceKicker: '服務與保障', assuranceTitle: '有問題，<br><span>我們在這裡。</span>', orderTitle: '訂單與付款', orderText: '訂單狀態與交付進度，都能在商城訂單中清楚查閱。', orderLink: '查看訂單與交付 <span>→</span>', supportTitle: '售後與人工支援', supportText: '售前諮詢、商品說明及售後問題，可透過官方售後渠道處理。', supportLink: '查看幫助與支援 <span>→</span>',
+        step1Number: '01 / 選購', step1Title: '選擇所需服務', step1Text: '進入商城瀏覽商品，確認內容與服務說明。',
+        step2Number: '02 / 付款', step2Title: '依提示完成下單', step2Text: '在商品頁面提交訂單並完成付款，流程清晰可循。',
+        step3Number: '03 / 交付', step3Title: '查看訂單與交付', step3Text: '登入商城查看訂單狀態、交付資訊與後續支援。',
+        footerBrand: '© 2026 Galaxy Ai', footerTopUp: '充值入口', legalNote: '本站所售會員均為正规渠道充值服務，主要面向海外用戶、留學生及境外學習 / 工作場景；暫不支援中國大陸地區用戶購買或使用。頁面內容僅供學習與交流，請遵守所在地法律法規及相關平台服務條款。',
+        faqKicker: '常見問題', faqTitle: '你可能關心的，<br><span>都在這裡。</span>', faq1Question: '在哪裡查看商品與可購買狀態？', faq1Answer: '進入商城頁面即可查看目前商品、價格與可購買狀態。', faq2Question: '不確定該選哪一種？', faq2Answer: '可依照使用需求選擇對應服務，訂單頁面會顯示清楚的商品說明。', faq3Question: '付款和訂單在哪裡完成？', faq3Answer: '商品選購、付款與訂單查詢都在商城完成，狀態會同步顯示。', faq5Question: '卡密提交後多久生效？', faq5Answer: '正常情況下提交後會快速處理，具體狀態以訂單頁面為準。', faq6Question: '售後從哪裡進入？', faq6Answer: '請從商城訂單進入售後入口，並準備好訂單資訊以便查詢。',
       },
-
       ja: {
-        brand: 'メンバーシップ',
-        navService: 'サービス',
-        navProcess: 'ご利用の流れ',
-        navBuy: '今すぐ購入',
-        eyebrow: 'AI MEMBERSHIP SERVICE',
-        heroTitle: '強力な AI を、<span>あなたの仕事に。</span>',
-        heroCopy: 'コードを購入してチャージを申請。わかりやすい手順で、すぐに使い始められます。',
-        buyCard: 'メンバーシップを購入 <span>↗</span>',
-        topUp: 'コードをお持ちの方はこちら',
-        heroNote: 'セルフサービス対応 · 注文情報を確認できます',
-        deviceTitle: 'メンバーシップを、<br>ここから始める。',
-        deviceSub: '複雑な手順は必要ありません。サービスを選び、コードを送信してすぐに利用できます。',
-        serviceStatusLabel: 'サービス状態',
-        orderLabel: '注文処理',
-        orderValue: '確認できます',
-        afterSalesLabel: 'サービス保証',
-        afterSalesValue: '明確な手順',
-        serviceTitle: '待ち時間を減らし、<br><span>確かな体験を。</span>',
-        serviceIntro: '購入からチャージまで、必要な情報をわかりやすくまとめています。シンプルで快適です。',
-        featureBuyTitle: 'かんたん購入',
-        featureBuyText: '購入ページでサービスを選び、お支払い後にコードを受け取れます。',
-        featureTopUpTitle: 'すぐにチャージ',
-        featureTopUpText: 'コードを入力して送信。画面の案内に沿って認証を完了します。',
-        featureTrackTitle: '確認しやすい',
-        featureTrackText: '注文情報が明確なので、チャージ状況をいつでも確認できます。',
-        processTitle: '3ステップで、<br><span>すぐに利用開始。</span>',
-        processIntro: '難しい操作はありません。手順に沿って進めるだけです。',
-        step1Number: '01 / 購入',
-        step1Title: 'サービスを選ぶ',
-        step1Text: '購入ページでお支払いを完了し、コードを保存します。',
-        step2Number: '02 / チャージ',
-        step2Title: 'コードを送信',
-        step2Text: 'チャージページでコードを入力し、送信します。',
-        step3Number: '03 / 利用',
-        step3Title: 'AI を使い始める',
-        step3Text: 'チャージ完了後にログインして、すぐに利用できます。',
-        finalTitle: '今すぐ始めて、<br>大切なことに集中しましょう。',
-        finalText: '購入もチャージも、ここで完結します。',
-        finalBuy: 'メンバーシップを購入 <span>↗</span>',
-        footerBrand: '© 2026 AI Membership Service',
-        footerTopUp: 'チャージページ',
-        legalNote: '本サイトで提供するメンバーシップは正規ルートによるチャージサービスで、主に海外ユーザー、留学生、海外での学習・仕事の用途を対象としています。中国本土のユーザーは現在ご利用いただけません。掲載内容は学習・交流を目的としたものです。所在地の法令および各プラットフォームの利用規約を遵守してください。'
-      }
+        brand: 'Galaxy Ai', navHome: 'ホーム', navService: 'サービス', navPurchase: '購入とお届け', navAssurance: 'サービスと安心', navFaq: 'よくある質問', navBuy: 'ショップへ →',
+        eyebrow: 'Galaxy Ai', heroTitle: '強力な AI を、<span>あなたの仕事に。</span>',
+        heroCopy: '安心して注文できる、明確な価格と購入後のサポート。<br>選ぶときから購入後まで、すべての手順と注文状況を確認できます。',
+        buyCard: 'ショップへ <span>→</span>', learnServices: 'サービスを見る ↓', enterprise: '法人購入 <span class="cart-icon" aria-hidden="true">🛒</span>', heroNote: '厳選デジタルサービス · 明確な注文フロー · アフターサポート',
+        trustSecure: '安全に注文', trustPrice: '明確な価格', trustSupport: '購入後のサポート', scrollCue: 'Galaxy Ai を詳しく見る',
+        deviceTitle: 'メンバーシップを、<br>ここから始める。', deviceSub: '複雑な手順は必要ありません。サービスを選び、コードを送信してすぐに利用できます。',
+        serviceStatusLabel: 'サービス状態', orderLabel: '注文処理', orderValue: '確認できます', afterSalesLabel: 'サービス保証', afterSalesValue: '明確な手順',
+        serviceKicker: '安心して選べる · 明確なサービス', serviceBuyLabel: '01 / 商品情報', serviceTopUpLabel: '02 / 注文の流れ', serviceTrackLabel: '03 / 購入後のサポート',
+        serviceTitle: '選ぶときから購入後まで、<br><span>すべてのステップに安心を。</span>', serviceIntro: '複雑な手順をシンプルにし、購入をより安心に。商品情報、注文状況、サポートをわかりやすくご案内します。',
+        featureBuyTitle: '内容を見てから選べる', featureBuyText: '商品内容とサービスの説明が明確なので、必要なものを安心して選べます。',
+        featureTopUpTitle: '注文状況をいつでも確認', featureTopUpText: '選択、支払い、お届けの進捗を必要なときに確認できます。',
+        featureTrackTitle: '困ったときもサポート', featureTrackText: '購入や利用についての質問は、ショップのサポート窓口へご相談ください。',
+        processKicker: '購入とお届け', processTitle: '3つのステップで、<br><span>わかりやすく。</span>', processIntro: '選択、支払い、お届けまで、ショップの注文画面で確認できます。画面の案内に沿ってお進みください。',
+        assuranceKicker: 'サービスと安心', assuranceTitle: 'ご不明点は、<br><span>こちらへ。</span>', orderTitle: '注文と支払い', orderText: '注文状況とお届けの進捗を、ショップの注文画面で確認できます。', orderLink: '注文とお届けを見る <span>→</span>', supportTitle: 'アフターサポート', supportText: '購入前の相談、商品説明、購入後の問題は公式サポートで対応します。', supportLink: 'ヘルプとサポートを見る <span>→</span>',
+        step1Number: '01 / 選択', step1Title: '必要なサービスを選ぶ', step1Text: 'ショップで商品を見て、内容とサービスの説明をご確認ください。',
+        step2Number: '02 / お支払い', step2Title: '案内に沿って注文する', step2Text: '商品ページの案内に沿って注文を送信し、お支払いを完了します。',
+        step3Number: '03 / お届け', step3Title: '注文とお届けを確認', step3Text: 'ショップにログインして注文状況、お届け情報、サポートをご確認ください。',
+        footerBrand: '© 2026 Galaxy Ai', footerTopUp: 'チャージページ', legalNote: '本サイトで提供するメンバーシップは正規ルートによるチャージサービスで、主に海外ユーザー、留学生、海外での学習・仕事の用途を対象としています。中国本土のユーザーは現在ご利用いただけません。掲載内容は学習・交流を目的としたものです。所在地の法令および各プラットフォームの利用規約を遵守してください。',
+        faqKicker: 'よくある質問', faqTitle: '気になることは、<br><span>ここで確認できます。</span>', faq1Question: '商品と購入可能な状態はどこで確認できますか？', faq1Answer: 'ショップページで現在の商品、価格、購入可能な状態を確認できます。', faq2Question: 'どの商品を選べばよいかわかりません。', faq2Answer: '用途に合ったサービスを選択してください。注文ページに商品説明を掲載しています。', faq3Question: '支払いと注文はどこで完了しますか？', faq3Answer: '商品の選択、支払い、注文確認はすべてショップ内で行えます。', faq5Question: 'コードを送信してから有効になるまでどのくらいかかりますか？', faq5Answer: '通常はすぐに処理されます。最新の状態は注文ページをご確認ください。', faq6Question: 'アフターサポートはどこから利用できますか？', faq6Answer: 'ショップの注文ページからサポート入口へ進み、注文情報をご用意ください。',
+      },
     };
-
     let currentLanguage = 'zh';
-
-    try {
-      const savedLanguage = localStorage.getItem('ai-membership-language');
-      if (['zh', 'zh-TW', 'en', 'ja'].includes(savedLanguage)) {
-        currentLanguage = savedLanguage;
-      }
-    } catch {}
-
+    try { currentLanguage = ['zh', 'zh-TW', 'en', 'ja'].includes(localStorage.getItem('ai-membership-language')) ? localStorage.getItem('ai-membership-language') : 'zh'; } catch {}
     const languageToggle = document.querySelector('#languageToggle');
     const languagePicker = document.querySelector('#languagePicker');
     const languageOptions = document.querySelectorAll('.language-option');
 
     function setLanguage(language) {
       currentLanguage = translations[language] ? language : 'zh';
-
-      document.documentElement.lang =
-        currentLanguage === 'en' ? 'en' :
-        currentLanguage === 'ja' ? 'ja' :
-        currentLanguage === 'zh-TW' ? 'zh-TW' : 'zh-CN';
-
+      document.documentElement.lang = currentLanguage === 'en' ? 'en' : currentLanguage === 'ja' ? 'ja' : currentLanguage === 'zh-TW' ? 'zh-TW' : 'zh-CN';
       document.querySelectorAll('[data-i18n]').forEach((node) => {
         const value = translations[currentLanguage][node.dataset.i18n];
         if (value !== undefined) node.innerHTML = value;
       });
-
-      languageToggle.setAttribute(
-        'aria-label',
-        currentLanguage === 'en'
-          ? 'Choose language'
-          : currentLanguage === 'ja'
-            ? '言語を選択'
-            : '选择语言'
-      );
-
+      languageToggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path></svg>';
+      languageToggle.setAttribute('aria-label', currentLanguage === 'en' ? 'Choose language' : currentLanguage === 'ja' ? '言語を選択' : '选择语言');
       languageOptions.forEach((option) => {
         const active = option.dataset.language === currentLanguage;
         option.classList.toggle('active', active);
         option.setAttribute('aria-checked', String(active));
       });
-
-      const titles = {
-        zh: 'AI 会员充值｜简单、可靠、立即开通',
-        'zh-TW': 'AI 會員充值｜簡單、可靠、立即開通',
-        en: 'AI Membership | Simple, reliable, ready to start',
-        ja: 'AI メンバーシップ｜シンプルで安心、すぐに開始'
-      };
-
+      const titles = { zh: 'AI 会员充值｜简单、可靠、立即开通', 'zh-TW': 'AI 會員充值｜簡單、可靠、立即開通', en: 'AI Membership | Simple, reliable, ready to start', ja: 'AI メンバーシップ｜シンプルで安心、すぐに開始' };
       document.title = titles[currentLanguage];
-
-      try {
-        localStorage.setItem('ai-membership-language', currentLanguage);
-      } catch {}
-
+      try { localStorage.setItem('ai-membership-language', currentLanguage); } catch {}
       updateServiceStatus();
     }
 
     languageToggle.addEventListener('click', (event) => {
       event.stopPropagation();
       languagePicker.classList.toggle('open');
-      languageToggle.setAttribute(
-        'aria-expanded',
-        String(languagePicker.classList.contains('open'))
-      );
+      languageToggle.setAttribute('aria-expanded', String(languagePicker.classList.contains('open')));
     });
-
-    languageOptions.forEach((option) => {
-      option.addEventListener('click', () => {
-        setLanguage(option.dataset.language);
-        languagePicker.classList.remove('open');
-        languageToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-
+    languageOptions.forEach((option) => option.addEventListener('click', () => {
+      setLanguage(option.dataset.language);
+      languagePicker.classList.remove('open');
+      languageToggle.setAttribute('aria-expanded', 'false');
+    }));
     document.addEventListener('click', (event) => {
       if (!languagePicker.contains(event.target)) {
         languagePicker.classList.remove('open');
         languageToggle.setAttribute('aria-expanded', 'false');
       }
     });
-
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         languagePicker.classList.remove('open');
@@ -1133,40 +684,26 @@
     });
 
     const serviceStatus = document.querySelector('#serviceStatus');
-    const statusText = serviceStatus.querySelector('.status-text');
+    const statusText = serviceStatus?.querySelector('.status-text');
 
     function updateServiceStatus() {
+      if (!serviceStatus || !statusText) return;
       const parts = new Intl.DateTimeFormat('zh-CN', {
         timeZone: 'Asia/Shanghai',
         hour: '2-digit',
-        hour12: false
+        hour12: false,
       }).formatToParts(new Date());
-
-      const hour = Number(
-        parts.find((part) => part.type === 'hour')?.value ?? 0
-      );
-
+      const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? 0);
       const isOnline = hour >= 10 && hour < 23;
-
       serviceStatus.classList.toggle('offline', !isOnline);
-
       const statusLabels = {
         zh: { online: '在线', offline: '不在线' },
         'zh-TW': { online: '在線', offline: '離線' },
         en: { online: 'Online', offline: 'Offline' },
-        ja: { online: 'オンライン', offline: 'オフライン' }
+        ja: { online: 'オンライン', offline: 'オフライン' },
       }[currentLanguage];
-
-      statusText.textContent = isOnline
-        ? statusLabels.online
-        : statusLabels.offline;
-
-      serviceStatus.setAttribute(
-        'aria-label',
-        isOnline
-          ? `${statusLabels.online}, 10:00–23:00`
-          : `${statusLabels.offline}, 10:00–23:00`
-      );
+      statusText.textContent = isOnline ? statusLabels.online : statusLabels.offline;
+      serviceStatus.setAttribute('aria-label', isOnline ? `${statusLabels.online}, 10:00–23:00` : `${statusLabels.offline}, 10:00–23:00`);
     }
 
     setLanguage(currentLanguage);
@@ -1174,17 +711,71 @@
     window.setInterval(updateServiceStatus, 60 * 1000);
 
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
+      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
     }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-    document.querySelectorAll('.reveal').forEach((element) => {
-      revealObserver.observe(element);
+    document.querySelectorAll('.faq-question').forEach((question) => {
+      question.addEventListener('click', () => {
+        const item = question.closest('.faq-item');
+        const isOpen = item.classList.toggle('open');
+        question.setAttribute('aria-expanded', String(isOpen));
+      });
     });
+
+    (() => {
+      const canvas = document.querySelector('#starfield');
+      const context = canvas?.getContext('2d');
+      if (!canvas || !context) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let width = 0;
+      let height = 0;
+      let stars = [];
+      const resize = () => {
+        const bounds = canvas.getBoundingClientRect();
+        width = bounds.width;
+        height = bounds.height;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.min(230, Math.max(120, Math.round(width * height / 5200)));
+        stars = Array.from({ length: count }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() < .08 ? 1.25 + Math.random() * .7 : .5 + Math.random() * 1.1,
+          alpha: .24 + Math.random() * .58,
+          phase: Math.random() * Math.PI * 2,
+          speed: .65 + Math.random() * 2.1,
+          drift: .12 + Math.random() * .16,
+          glow: Math.random() < .08,
+        }));
+      };
+      const draw = (time = 0) => {
+        context.clearRect(0, 0, width, height);
+        stars.forEach((star) => {
+          const pulse = .44 + .56 * (.5 + .5 * Math.sin(time * .00082 * star.speed + star.phase));
+          context.fillStyle = star.glow
+            ? `rgba(142,196,255,${star.alpha * pulse})`
+            : `rgba(218,231,255,${star.alpha * pulse})`;
+          context.shadowColor = star.glow ? `rgba(95,169,255,${pulse * .78})` : 'transparent';
+          context.shadowBlur = star.glow ? 7 : 0;
+          context.beginPath();
+          context.arc(star.x, star.y, star.radius * (.72 + pulse * .48), 0, Math.PI * 2);
+          context.fill();
+          context.shadowBlur = 0;
+          star.x += star.drift * star.speed;
+          star.y += Math.sin(time * .00024 * star.speed + star.phase) * .018;
+          if (star.x > width + 4) {
+            star.x = -4;
+            star.y = Math.random() * height;
+          }
+        });
+        window.requestAnimationFrame(draw);
+      };
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+      window.requestAnimationFrame(draw);
+    })();
   </script>
 </body>
 </html>
