@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业采购｜Galaxy Ai</title>
+  <meta name="description" content="Galaxy Ai 企业采购服务，支持团队、企业与项目的批量数字服务采购。">
+  <meta name="theme-color" content="#f5f8fc">
+  <style>
+    :root {
+      --bg: #f5f8fc;
+      --surface: rgba(255,255,255,.78);
+      --white: #fff;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0,0,0,.09);
+      --blue: #0071e3;
+      --blue-dark: #0066cc;
+      --green: #1f8f5f;
+      --shadow: 0 24px 70px rgba(0, 45, 90, .10);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; color: var(--ink); background: var(--bg); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; border: 0; cursor: pointer; }
+    .wrap { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { position: fixed; inset: 0 0 auto; z-index: 20; height: 52px; background: rgba(245,248,252,.80); border-bottom: 1px solid rgba(0,0,0,.06); backdrop-filter: saturate(180%) blur(22px); }
+    .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .logo { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; }
+    .logo-mark { width: 22px; height: 22px; display: grid; place-items: center; color: var(--ink); background: transparent; font-size: 22px; line-height: 1; font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 13px; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .nav-cta, .primary { color: #fff; background: var(--blue); border-radius: 999px; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+    .nav-cta { padding: 7px 15px; font-size: 13px; }
+    .nav-cta:hover, .primary:hover { transform: translateY(-2px); background: var(--blue-dark); }
+    .language-picker { position: relative; }
+    .lang-toggle { width: 36px; height: 36px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: rgba(255,255,255,.62); transition: .2s ease; }
+    .lang-toggle:hover { color: var(--ink); background: #fff; transform: translateY(-1px); }
+    .lang-toggle svg { width: 17px; height: 17px; display: block; }
+    .language-menu { position: absolute; top: calc(100% + 9px); right: 0; z-index: 30; display: none; width: 178px; padding: 6px; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; background: rgba(247,252,248,.96); box-shadow: 0 18px 42px rgba(22,50,35,.16); backdrop-filter: blur(18px); }
+    .language-picker.open .language-menu { display: grid; gap: 2px; }
+    .language-option { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px; border-radius: 10px; color: #385144; background: transparent; text-align: left; font-size: 13px; }
+    .language-option:hover, .language-option.active { color: #233b2c; background: #dfece1; }
+    .language-option .check { color: #3b8056; font-size: 16px; line-height: 1; opacity: 0; }
+    .language-option.active .check { opacity: 1; }
+
+    .hero { position: relative; overflow: hidden; padding: 150px 0 82px; background: radial-gradient(circle at 80% 10%, rgba(196,223,255,.72), transparent 34%), radial-gradient(circle at 18% 42%, rgba(225,217,255,.34), transparent 30%), var(--bg); }
+    .hero::after { content: ""; position: absolute; width: 520px; height: 520px; right: -180px; bottom: -240px; border-radius: 50%; background: radial-gradient(circle, rgba(0,113,227,.10), transparent 68%); pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 70px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; letter-spacing: .05em; }
+    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(31,143,95,.12); }
+    h1 { max-width: 670px; margin: 20px 0 0; font-size: clamp(48px, 7vw, 82px); line-height: .98; letter-spacing: -.075em; }
+    h1 span { display: block; color: #6e6e73; }
+    .hero-copy { max-width: 600px; margin: 28px 0 0; color: var(--muted); font-size: 18px; letter-spacing: -.02em; }
+    .hero-actions { display: flex; align-items: center; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+    .primary, .secondary { min-height: 46px; padding: 0 21px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; font-size: 15px; }
+    .primary { box-shadow: 0 12px 24px rgba(0,113,227,.20); }
+    .secondary { color: var(--blue); background: rgba(255,255,255,.72); border: 1px solid rgba(0,113,227,.22); }
+    .secondary:hover { transform: translateY(-2px); background: #fff; }
+    .hero-note { margin-top: 15px; color: #8a8a8f; font-size: 12px; }
+    .status-card { padding: 26px; border: 1px solid rgba(255,255,255,.9); border-radius: 26px; background: rgba(255,255,255,.72); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+    .status-kicker { color: var(--blue); font-size: 12px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+    .status-title { margin: 13px 0 23px; font-size: 29px; line-height: 1.08; letter-spacing: -.055em; }
+    .status-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 0; border-top: 1px solid rgba(0,0,0,.07); font-size: 14px; }
+    .status-row:first-of-type { border-top: 0; padding-top: 0; }
+    .status-label { color: var(--muted); }
+    .status-value { font-weight: 600; }
+    .status-online { display: inline-flex; align-items: center; gap: 6px; color: var(--green); }
+    .status-online i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    .section { padding: 88px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
+    .section-title { max-width: 620px; margin: 0; font-size: clamp(34px, 5vw, 56px); line-height: 1.04; letter-spacing: -.065em; }
+    .section-title span { color: var(--muted); }
+    .section-intro { max-width: 330px; margin: 0; color: var(--muted); font-size: 14px; }
+    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .offer { min-height: 220px; padding: 26px; border: 1px solid rgba(0,113,227,.10); border-radius: 24px; background: rgba(255,255,255,.78); box-shadow: 0 16px 42px rgba(0,45,90,.06); }
+    .offer-mark { color: var(--blue); font-size: 20px; }
+    .offer h3 { margin: 27px 0 9px; font-size: 20px; letter-spacing: -.04em; }
+    .offer p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+    .details { padding: 86px 0; background: #eaf3ff; border-top: 1px solid #d9e8fa; border-bottom: 1px solid #d9e8fa; }
+    .details-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 74px; align-items: start; }
+    .details-title { max-width: 430px; margin: 0; font-size: clamp(38px, 5vw, 58px); line-height: 1.05; letter-spacing: -.07em; }
+    .details-title span { color: #6e6e73; }
+    .details-copy { margin: 19px 0 0; color: var(--muted); font-size: 14px; }
+    .detail-list { border-top: 1px solid rgba(0,113,227,.18); }
+    .detail-row { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 68px; border-bottom: 1px solid rgba(0,113,227,.18); font-size: 14px; }
+    .detail-row strong { font-size: 15px; }
+    .detail-row span { color: var(--muted); text-align: right; }
+
+    .contact { padding: 92px 0 104px; }
+    .contact-card { display: grid; grid-template-columns: 1.1fr .9fr; gap: 54px; align-items: center; padding: 48px; border: 1px solid rgba(0,113,227,.10); border-radius: 30px; background: #fff; box-shadow: var(--shadow); }
+    .contact-kicker { color: var(--blue); font-size: 13px; font-weight: 600; letter-spacing: .05em; }
+    .contact-title { max-width: 600px; margin: 17px 0 0; font-size: clamp(34px, 4.5vw, 54px); line-height: 1.06; letter-spacing: -.065em; }
+    .contact-copy { max-width: 560px; margin: 18px 0 0; color: var(--muted); font-size: 14px; }
+    .contact-box { padding: 24px; border-radius: 22px; background: #eef6ff; border: 1px solid #d9eafa; }
+    .contact-box strong { display: block; font-size: 16px; }
+    .contact-box p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .contact-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .contact-box .secondary { background: #fff; }
+    footer { padding: 24px 0; color: #8a8a8f; background: #fff; border-top: 1px solid var(--line); font-size: 12px; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a:hover { color: var(--ink); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 780px) {
+      .wrap { width: min(100% - 32px, 640px); }
+      .nav-links { display: none; }
+      .hero { padding: 126px 0 70px; }
+      .hero-grid, .details-grid, .contact-card { grid-template-columns: 1fr; }
+      .hero-grid { gap: 42px; }
+      .offer-grid { grid-template-columns: 1fr; }
+      .section, .details { padding: 72px 0; }
+      .section-head { display: block; margin-bottom: 28px; }
+      .section-intro { margin-top: 16px; }
+      .details-grid { gap: 42px; }
+      .contact { padding: 72px 0 84px; }
+      .contact-card { gap: 32px; padding: 28px; }
+      .detail-row { align-items: flex-start; flex-direction: column; justify-content: center; gap: 4px; padding: 14px 0; }
+      .detail-row span { text-align: left; }
+      .footer-row { display: block; }
+      .footer-links { margin-top: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="logo" href="index.html#top" aria-label="Galaxy Ai 首页"><span class="logo-mark" aria-hidden="true">✳</span><span data-i18n="brand">Galaxy Ai ✦</span></a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="index.html#top" data-i18n="navHome">首页</a>
+        <a href="index.html#service" data-i18n="navService">服务</a>
+        <a href="index.html#process" data-i18n="navPurchase">购买与交付</a>
+        <a href="index.html#assurance" data-i18n="navAssurance">服务与保障</a>
+        <a href="index.html#support" data-i18n="navFaq">常见问题</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="language-picker" id="languagePicker">
+          <button class="lang-toggle" id="languageToggle" type="button" aria-label="切换语言" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.4 8.7 12S9.8 5.8 12 3.5Z"></path></svg></button>
+          <div class="language-menu" id="languageMenu" role="menu"><button class="language-option" type="button" role="menuitemradio" data-language="zh" aria-checked="true">简体中文 <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="zh-TW" aria-checked="false">繁體中文 <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="en" aria-checked="false">English <span class="check">●</span></button><button class="language-option" type="button" role="menuitemradio" data-language="ja" aria-checked="false">日本語 <span class="check">●</span></button></div>
+        </div>
+        <a class="nav-cta" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="navBuy">立即购买</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><i></i><span data-i18n="eyebrow">企业服务 · Enterprise</span></div>
+          <h1 data-i18n="heroTitle">企业采购，<span>清晰、灵活、可交付。</span></h1>
+          <p class="hero-copy" data-i18n="heroCopy">面向团队、企业与项目采购场景，提供 AI 订阅与数字服务的批量采购支持。</p>
+          <div class="hero-actions"><a class="primary" href="#contact" data-i18n="heroPrimary">提交采购需求 <span>↓</span></a><a class="secondary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="heroSecondary">进入商城 <span>↗</span></a></div>
+          <div class="hero-note" data-i18n="heroNote">专属方案 · 批量支持 · 订单清晰可查</div>
+        </div>
+        <div class="status-card reveal">
+          <div class="status-kicker" data-i18n="cardKicker">Business procurement</div>
+          <div class="status-title" data-i18n="cardTitle">为团队准备更清楚的采购方式。</div>
+          <div class="status-row"><span class="status-label" data-i18n="status1Label">服务状态</span><span class="status-online"><i></i><span data-i18n="status1Value">在线响应</span></span></div>
+          <div class="status-row"><span class="status-label" data-i18n="status2Label">采购方式</span><span class="status-value" data-i18n="status2Value">按需定制</span></div>
+          <div class="status-row"><span class="status-label" data-i18n="status3Label">订单信息</span><span class="status-value" data-i18n="status3Value">清晰可查</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><h2 class="section-title" data-i18n="offerTitle">为团队和项目，<br><span>准备更合适的方案。</span></h2><p class="section-intro" data-i18n="offerIntro">从单次采购到批量订购，先明确需求，再选择合适的服务组合。</p></div>
+        <div class="offer-grid">
+          <article class="offer reveal"><div class="offer-mark">✓</div><h3 data-i18n="offer1Title">批量采购方案</h3><p data-i18n="offer1Text">适合团队、项目与长期使用场景，可根据采购数量与服务周期进行规划。</p></article>
+          <article class="offer reveal"><div class="offer-mark">✓</div><h3 data-i18n="offer2Title">统一订单支持</h3><p data-i18n="offer2Text">商品、数量、交付信息集中整理，方便团队内部确认与后续查询。</p></article>
+          <article class="offer reveal"><div class="offer-mark">✓</div><h3 data-i18n="offer3Title">数字服务采购</h3><p data-i18n="offer3Text">支持 AI 订阅及其他数字服务的企业采购咨询。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="details">
+      <div class="wrap details-grid">
+        <div class="reveal"><h2 class="details-title" data-i18n="detailsTitle">三步确认，<br><span>清晰完成采购。</span></h2><p class="details-copy" data-i18n="detailsCopy">把需求、数量与交付安排提前说清楚，后续每一步都更容易确认。</p></div>
+        <div class="detail-list">
+          <div class="detail-row reveal"><strong data-i18n="detail1Title">01 / 提交需求</strong><span data-i18n="detail1Text">说明产品类型、数量与使用场景</span></div>
+          <div class="detail-row reveal"><strong data-i18n="detail2Title">02 / 确认方案</strong><span data-i18n="detail2Text">根据采购规模确认服务与交付方式</span></div>
+          <div class="detail-row reveal"><strong data-i18n="detail3Title">03 / 完成订单</strong><span data-i18n="detail3Text">进入商城下单，订单信息清楚可查</span></div>
+          <div class="detail-row reveal"><strong data-i18n="detail4Title">04 / 持续支持</strong><span data-i18n="detail4Text">遇到问题可通过订单入口继续跟进</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <div><div class="contact-kicker" data-i18n="contactKicker">企业采购咨询</div><h2 class="contact-title" data-i18n="contactTitle">告诉我们采购需求，<br><span>一起确认合适的方案。</span></h2><p class="contact-copy" data-i18n="contactCopy">请准备产品名称、采购数量和期望交付时间；具体价格、交付安排与服务细节，以商城订单和实际沟通为准。</p></div>
+          <div class="contact-box"><strong data-i18n="contactBoxTitle">准备开始采购？</strong><p data-i18n="contactBoxText">先进入商城查看产品与服务，再根据团队需求完成订单。</p><div class="contact-actions"><a class="primary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="contactButton">进入商城 <span>↗</span></a><a class="secondary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="contactAdvisor">联系采购顾问</a></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-row"><span data-i18n="footerBrand">© 2026 Galaxy Ai</span><div class="footer-links"><a href="index.html#top" data-i18n="footerHome">返回首页</a><a href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="footerStore">进入商城</a></div></div></footer>
+
+  <script>
+    const translations = {
+      zh: {
+        brand: 'Galaxy Ai ✦', navHome: '首页', navService: '服务', navPurchase: '购买与交付', navAssurance: '服务与保障', navFaq: '常见问题', navBuy: '立即购买',
+        eyebrow: '企业服务 · Enterprise', heroTitle: '企业采购，<span>清晰、灵活、可交付。</span>', heroCopy: '面向团队、企业与项目采购场景，提供 AI 订阅与数字服务的批量采购支持。', heroPrimary: '提交采购需求 <span>↓</span>', heroSecondary: '进入商城 <span>↗</span>', heroNote: '专属方案 · 批量支持 · 订单清晰可查',
+        cardKicker: 'Business procurement', cardTitle: '为团队准备更清楚的采购方式。', status1Label: '服务状态', status1Value: '在线响应', status2Label: '采购方式', status2Value: '按需定制', status3Label: '订单信息', status3Value: '清晰可查',
+        offerTitle: '为团队和项目，<br><span>准备更合适的方案。</span>', offerIntro: '从单次采购到批量订购，先明确需求，再选择合适的服务组合。', offer1Title: '批量采购方案', offer1Text: '适合团队、项目与长期使用场景，可根据采购数量与服务周期进行规划。', offer2Title: '统一订单支持', offer2Text: '商品、数量、交付信息集中整理，方便团队内部确认与后续查询。', offer3Title: '数字服务采购', offer3Text: '支持 AI 订阅及其他数字服务的企业采购咨询。',
+        detailsTitle: '三步确认，<br><span>清晰完成采购。</span>', detailsCopy: '把需求、数量与交付安排提前说清楚，后续每一步都更容易确认。', detail1Title: '01 / 提交需求', detail1Text: '说明产品类型、数量与使用场景', detail2Title: '02 / 确认方案', detail2Text: '根据采购规模确认服务与交付方式', detail3Title: '03 / 完成订单', detail3Text: '进入商城下单，订单信息清楚可查', detail4Title: '04 / 持续支持', detail4Text: '遇到问题可通过订单入口继续跟进',
+        contactKicker: '企业采购咨询', contactTitle: '告诉我们采购需求，<br><span>一起确认合适的方案。</span>', contactCopy: '请准备产品名称、采购数量和期望交付时间；具体价格、交付安排与服务细节，以商城订单和实际沟通为准。', contactBoxTitle: '准备开始采购？', contactBoxText: '先进入商城查看产品与服务，再根据团队需求完成订单。', contactButton: '进入商城 <span>↗</span>', contactAdvisor: '联系采购顾问', footerBrand: '© 2026 Galaxy Ai', footerHome: '返回首页', footerStore: '进入商城'
+      },
+      en: {
+        brand: 'Galaxy Ai ✦', navHome: 'Home', navService: 'Services', navPurchase: 'Purchase & delivery', navAssurance: 'Service & assurance', navFaq: 'FAQ', navBuy: 'Buy now',
+        eyebrow: 'Enterprise service', heroTitle: 'Business procurement,<span>clear, flexible, ready to deliver.</span>', heroCopy: 'Batch purchasing support for teams, businesses, and projects — including AI subscriptions and digital services.', heroPrimary: 'Submit a request <span>↓</span>', heroSecondary: 'Enter store <span>↗</span>', heroNote: 'Tailored options · Batch support · Clear order tracking',
+        cardKicker: 'Business procurement', cardTitle: 'A clearer way to purchase for your team.', status1Label: 'Service status', status1Value: 'Available', status2Label: 'Procurement', status2Value: 'Tailored', status3Label: 'Order details', status3Value: 'Traceable',
+        offerTitle: 'For teams and projects,<br><span>a better way to buy.</span>', offerIntro: 'From one-time purchases to recurring orders, clarify the need first and choose the right service mix.', offer1Title: 'Batch procurement', offer1Text: 'Plan around your quantity, service cycle, and long-term usage needs.', offer2Title: 'Unified order support', offer2Text: 'Keep product, quantity, and delivery details together for easy team review.', offer3Title: 'Digital service sourcing', offer3Text: 'Business support for AI subscriptions and other digital services.',
+        detailsTitle: 'Three steps,<br><span>clear from start to finish.</span>', detailsCopy: 'Share the requirements, quantity, and delivery plan upfront so every next step stays easy to confirm.', detail1Title: '01 / Share requirements', detail1Text: 'Tell us the product type, quantity, and use case', detail2Title: '02 / Confirm the plan', detail2Text: 'Choose the service and delivery method for your scale', detail3Title: '03 / Complete the order', detail3Text: 'Enter the store and keep the order details visible', detail4Title: '04 / Ongoing support', detail4Text: 'Continue follow-up through the order entry when needed',
+        contactKicker: 'Enterprise procurement', contactTitle: 'Tell us what you need,<br><span>and we will shape the right plan.</span>', contactCopy: 'Prepare the product, quantity, and preferred delivery time. Final pricing and delivery details follow the store order and confirmed communication.', contactBoxTitle: 'Ready to purchase?', contactBoxText: 'Open the store to review products and complete the order for your team.', contactButton: 'Enter store <span>↗</span>', contactAdvisor: 'Contact advisor', footerBrand: '© 2026 Galaxy Ai', footerHome: 'Back home', footerStore: 'Enter store'
+      },
+      'zh-TW': {
+        brand: 'Galaxy Ai ✦', navHome: '首頁', navService: '服務', navPurchase: '購買與交付', navAssurance: '服務與保障', navFaq: '常見問題', navBuy: '立即購買',
+        eyebrow: '企業服務 · Enterprise', heroTitle: '企業採購，<span>清晰、靈活、可交付。</span>', heroCopy: '面向團隊、企業與專案採購場景，提供 AI 訂閱與數位服務的批量採購支援。', heroPrimary: '提交採購需求 <span>↓</span>', heroSecondary: '進入商城 <span>↗</span>', heroNote: '專屬方案 · 批量支援 · 訂單清晰可查',
+        cardKicker: 'Business procurement', cardTitle: '為團隊準備更清楚的採購方式。', status1Label: '服務狀態', status1Value: '線上回應', status2Label: '採購方式', status2Value: '按需訂製', status3Label: '訂單資訊', status3Value: '清晰可查',
+        offerTitle: '為團隊與專案，<br><span>準備更合適的方案。</span>', offerIntro: '從單次採購到批量訂購，先確認需求，再選擇合適的服務組合。', offer1Title: '批量採購方案', offer1Text: '適合團隊、專案與長期使用場景，可依採購數量與服務週期規劃。', offer2Title: '統一訂單支援', offer2Text: '商品、數量與交付資訊集中整理，方便團隊確認與後續查詢。', offer3Title: '數位服務採購', offer3Text: '支援 AI 訂閱及其他數位服務的企業採購諮詢。',
+        detailsTitle: '三步確認，<br><span>清晰完成採購。</span>', detailsCopy: '提前說清楚需求、數量與交付安排，後續每一步都更容易確認。', detail1Title: '01 / 提交需求', detail1Text: '說明產品類型、數量與使用場景', detail2Title: '02 / 確認方案', detail2Text: '依採購規模確認服務與交付方式', detail3Title: '03 / 完成訂單', detail3Text: '進入商城下單，訂單資訊清楚可查', detail4Title: '04 / 持續支援', detail4Text: '遇到問題可透過訂單入口繼續跟進',
+        contactKicker: '企業採購諮詢', contactTitle: '告訴我們採購需求，<br><span>一起確認合適的方案。</span>', contactCopy: '請準備產品名稱、採購數量與期望交付時間；具體價格、交付安排與服務細節，以商城訂單和實際溝通為準。', contactBoxTitle: '準備開始採購？', contactBoxText: '先進入商城查看商品與服務，再依團隊需求完成訂單。', contactButton: '進入商城 <span>↗</span>', contactAdvisor: '聯絡採購顧問', footerBrand: '© 2026 Galaxy Ai', footerHome: '返回首頁', footerStore: '進入商城'
+      },
+      ja: {
+        brand: 'Galaxy Ai ✦', navHome: 'ホーム', navService: 'サービス', navPurchase: '購入とお届け', navAssurance: 'サービスと安心', navFaq: 'よくある質問', navBuy: '今すぐ購入',
+        eyebrow: '法人向けサービス', heroTitle: '法人購入を、<span>明確に、柔軟に。</span>', heroCopy: 'チーム・企業・プロジェクト向けに、AI サブスクリプションなどのデジタルサービスをまとめて購入できます。', heroPrimary: '相談を始める <span>↓</span>', heroSecondary: 'ショップへ <span>↗</span>', heroNote: '個別プラン · 一括対応 · 注文を確認できます',
+        cardKicker: 'Business procurement', cardTitle: 'チームのための、わかりやすい購入方法。', status1Label: 'サービス状態', status1Value: '対応中', status2Label: '購入方法', status2Value: '個別対応', status3Label: '注文情報', status3Value: '確認できます',
+        offerTitle: 'チームとプロジェクトに、<br><span>適した購入方法を。</span>', offerIntro: '単発購入からまとめ買いまで、必要なものを確認してサービスを選べます。', offer1Title: '一括購入プラン', offer1Text: '数量、利用期間、チームの運用に合わせて購入方法を整理します。', offer2Title: '注文情報を一元管理', offer2Text: '商品、数量、お届け情報をまとめて確認できます。', offer3Title: 'デジタルサービス', offer3Text: 'AI サブスクリプションなどの法人相談に対応します。',
+        detailsTitle: '3ステップで、<br><span>購入まで明確に。</span>', detailsCopy: '必要なもの、数量、お届け方法を先に確認して、次の手順をわかりやすくします。', detail1Title: '01 / 要件を共有', detail1Text: '商品タイプ、数量、利用目的をお知らせください', detail2Title: '02 / プランを確認', detail2Text: '規模に合わせてサービスとお届け方法を確認します', detail3Title: '03 / 注文を完了', detail3Text: 'ショップで注文し、注文情報を確認できます', detail4Title: '04 / 継続サポート', detail4Text: '必要に応じて注文入口からフォローできます',
+        contactKicker: '法人購入のご相談', contactTitle: '必要なものを教えてください。<br><span>最適な方法を一緒に確認します。</span>', contactCopy: '商品名、数量、希望のお届け時期をご準備ください。価格と詳細はショップの注文内容および確認事項に基づきます。', contactBoxTitle: '購入を始めますか？', contactBoxText: 'ショップで商品とサービスを確認し、チームの注文を進めてください。', contactButton: 'ショップへ <span>↗</span>', contactAdvisor: '購入相談', footerBrand: '© 2026 Galaxy Ai', footerHome: 'ホームへ戻る', footerStore: 'ショップへ'
+      }
+    };
+    let currentLanguage = 'zh';
+    try { currentLanguage = ['zh', 'zh-TW', 'en', 'ja'].includes(localStorage.getItem('ai-membership-language')) ? localStorage.getItem('ai-membership-language') : 'zh'; } catch {}
+    const picker = document.querySelector('#languagePicker');
+    const toggle = document.querySelector('#languageToggle');
+    const options = document.querySelectorAll('.language-option');
+    function setLanguage(language) {
+      currentLanguage = translations[language] ? language : 'zh';
+      document.documentElement.lang = currentLanguage === 'en' ? 'en' : currentLanguage === 'ja' ? 'ja' : currentLanguage === 'zh-TW' ? 'zh-TW' : 'zh-CN';
+      document.querySelectorAll('[data-i18n]').forEach((node) => { const value = translations[currentLanguage][node.dataset.i18n]; if (value !== undefined) node.innerHTML = value; });
+      options.forEach((option) => { const active = option.dataset.language === currentLanguage; option.classList.toggle('active', active); option.setAttribute('aria-checked', String(active)); });
+      try { localStorage.setItem('ai-membership-language', currentLanguage); } catch {}
+    }
+    toggle.addEventListener('click', () => { const open = picker.classList.toggle('open'); toggle.setAttribute('aria-expanded', String(open)); });
+    options.forEach((option) => option.addEventListener('click', () => { setLanguage(option.dataset.language); picker.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }));
+    document.addEventListener('click', (event) => { if (!picker.contains(event.target)) { picker.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); } });
+    setLanguage(currentLanguage);
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
