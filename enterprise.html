@@ -103,6 +103,19 @@
     .contact-box p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
     .contact-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .contact-box .secondary { background: #fff; }
+    .advisor-qr-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: rgba(13,22,38,.48); backdrop-filter: blur(10px); opacity: 0; transition: opacity .22s ease; }
+    .advisor-qr-modal[hidden] { display: none !important; }
+    .advisor-qr-modal.open { opacity: 1; }
+    .advisor-qr-dialog { position: relative; width: min(100%, 420px); padding: 34px 32px 28px; border: 1px solid rgba(255,255,255,.9); border-radius: 26px; background: rgba(255,255,255,.97); box-shadow: 0 28px 90px rgba(5,18,40,.28); text-align: center; transform: translateY(10px) scale(.98); transition: transform .22s ease; }
+    .advisor-qr-modal.open .advisor-qr-dialog { transform: translateY(0) scale(1); }
+    .advisor-qr-close { position: absolute; top: 13px; right: 14px; width: 36px; height: 36px; border: 0; border-radius: 50%; color: #687386; background: #f1f5fa; font-size: 24px; line-height: 1; }
+    .advisor-qr-close:hover { color: #172033; background: #e8eef6; }
+    .advisor-qr-kicker { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .advisor-qr-dialog h2 { margin: 10px 0 7px; font-size: 25px; letter-spacing: -.045em; }
+    .advisor-qr-dialog p { margin: 0; color: var(--muted); font-size: 14px; }
+    .advisor-qr-image { width: 224px; height: 224px; margin: 22px auto 14px; padding: 8px; border: 1px solid #e6edf5; border-radius: 18px; background: #fff; box-shadow: 0 12px 30px rgba(16,42,75,.08); image-rendering: pixelated; }
+    .advisor-qr-note { display: block; color: #858d9b; font-size: 12px; line-height: 1.65; }
+    @media (prefers-reduced-motion: reduce) { .advisor-qr-modal, .advisor-qr-dialog { transition: none; } }
     footer { padding: 24px 0; color: #8a8a8f; background: #fff; border-top: 1px solid var(--line); font-size: 12px; }
     .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .footer-links { display: flex; gap: 18px; }
@@ -197,13 +210,24 @@
       <div class="wrap">
         <div class="contact-card reveal">
           <div><div class="contact-kicker" data-i18n="contactKicker">企业采购咨询</div><h2 class="contact-title" data-i18n="contactTitle">告诉我们采购需求，<br><span>一起确认合适的方案。</span></h2><p class="contact-copy" data-i18n="contactCopy">请准备产品名称、采购数量和期望交付时间；具体价格、交付安排与服务细节，以商城订单和实际沟通为准。</p></div>
-          <div class="contact-box"><strong data-i18n="contactBoxTitle">准备开始采购？</strong><p data-i18n="contactBoxText">先进入商城查看产品与服务，再根据团队需求完成订单。</p><div class="contact-actions"><a class="primary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="contactButton">进入商城 <span>↗</span></a><a class="secondary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="contactAdvisor">联系采购顾问</a></div></div>
+          <div class="contact-box"><strong data-i18n="contactBoxTitle">准备开始采购？</strong><p data-i18n="contactBoxText">先进入商城查看产品与服务，再根据团队需求完成订单。</p><div class="contact-actions"><a class="primary" href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="contactButton">进入商城 <span>↗</span></a><button class="secondary" id="advisorQrOpen" type="button" data-i18n="contactAdvisor" aria-haspopup="dialog" aria-controls="advisorQrModal" aria-expanded="false">联系采购顾问</button></div></div>
         </div>
       </div>
     </section>
   </main>
 
   <footer><div class="wrap footer-row"><span data-i18n="footerBrand">© 2026 Galaxy Ai</span><div class="footer-links"><a href="index.html#top" data-i18n="footerHome">返回首页</a><a href="https://www.gpt-plus.lat/" target="_blank" rel="noreferrer" data-i18n="footerStore">进入商城</a></div></div></footer>
+
+  <div class="advisor-qr-modal" id="advisorQrModal" hidden>
+    <div class="advisor-qr-dialog" role="dialog" aria-modal="true" aria-labelledby="advisorQrTitle" aria-describedby="advisorQrDescription">
+      <button class="advisor-qr-close" id="advisorQrClose" type="button" aria-label="关闭二维码弹窗">×</button>
+      <span class="advisor-qr-kicker">Galaxy Ai · Enterprise</span>
+      <h2 id="advisorQrTitle" data-i18n="advisorQrTitle">联系采购顾问</h2>
+      <p id="advisorQrDescription" data-i18n="advisorQrDescription">使用手机扫描二维码，进入采购顾问联系入口。</p>
+      <img class="advisor-qr-image" src="enterprise-advisor-qr.png" alt="采购顾问联系二维码" width="400" height="400">
+      <small class="advisor-qr-note" data-i18n="advisorQrNote">建议准备产品类型、采购数量和使用场景，沟通更高效。</small>
+    </div>
+  </div>
 
   <script>
     const translations = {
@@ -240,6 +264,12 @@
         contactKicker: '法人購入のご相談', contactTitle: '必要なものを教えてください。<br><span>最適な方法を一緒に確認します。</span>', contactCopy: '商品名、数量、希望のお届け時期をご準備ください。価格と詳細はショップの注文内容および確認事項に基づきます。', contactBoxTitle: '購入を始めますか？', contactBoxText: 'ショップで商品とサービスを確認し、チームの注文を進めてください。', contactButton: 'ショップへ <span>↗</span>', contactAdvisor: '購入相談', footerBrand: '© 2026 Galaxy Ai', footerHome: 'ホームへ戻る', footerStore: 'ショップへ'
       }
     };
+    const advisorQrTranslations = {
+      zh: { advisorQrTitle: '联系采购顾问', advisorQrDescription: '使用手机扫描二维码，进入采购顾问联系入口。', advisorQrNote: '建议准备产品类型、采购数量和使用场景，沟通更高效。', advisorQrClose: '关闭二维码弹窗' },
+      en: { advisorQrTitle: 'Contact our advisor', advisorQrDescription: 'Scan this QR code with your phone to reach our procurement advisor.', advisorQrNote: 'Have your product type, quantity, and use case ready for a smoother conversation.', advisorQrClose: 'Close QR dialog' },
+      'zh-TW': { advisorQrTitle: '聯絡採購顧問', advisorQrDescription: '使用手機掃描 QR Code，進入採購顧問聯絡入口。', advisorQrNote: '建議準備產品類型、採購數量與使用情境，溝通更有效率。', advisorQrClose: '關閉 QR Code 對話框' },
+      ja: { advisorQrTitle: '購入アドバイザーに相談', advisorQrDescription: 'スマートフォンで QR コードを読み取り、購入アドバイザーへご連絡ください。', advisorQrNote: '商品タイプ、数量、利用目的をご用意いただくとスムーズです。', advisorQrClose: 'QR ダイアログを閉じる' }
+    };
     let currentLanguage = 'zh';
     try { currentLanguage = ['zh', 'zh-TW', 'en', 'ja'].includes(localStorage.getItem('ai-membership-language')) ? localStorage.getItem('ai-membership-language') : 'zh'; } catch {}
     const picker = document.querySelector('#languagePicker');
@@ -248,7 +278,8 @@
     function setLanguage(language) {
       currentLanguage = translations[language] ? language : 'zh';
       document.documentElement.lang = currentLanguage === 'en' ? 'en' : currentLanguage === 'ja' ? 'ja' : currentLanguage === 'zh-TW' ? 'zh-TW' : 'zh-CN';
-      document.querySelectorAll('[data-i18n]').forEach((node) => { const value = translations[currentLanguage][node.dataset.i18n]; if (value !== undefined) node.innerHTML = value; });
+      document.querySelectorAll('[data-i18n]').forEach((node) => { const value = translations[currentLanguage][node.dataset.i18n] ?? advisorQrTranslations[currentLanguage]?.[node.dataset.i18n]; if (value !== undefined) node.innerHTML = value; });
+      document.querySelector('#advisorQrClose').setAttribute('aria-label', advisorQrTranslations[currentLanguage].advisorQrClose);
       options.forEach((option) => { const active = option.dataset.language === currentLanguage; option.classList.toggle('active', active); option.setAttribute('aria-checked', String(active)); });
       try { localStorage.setItem('ai-membership-language', currentLanguage); } catch {}
     }
@@ -256,6 +287,24 @@
     options.forEach((option) => option.addEventListener('click', () => { setLanguage(option.dataset.language); picker.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }));
     document.addEventListener('click', (event) => { if (!picker.contains(event.target)) { picker.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); } });
     setLanguage(currentLanguage);
+    const advisorQrOpen = document.querySelector('#advisorQrOpen');
+    const advisorQrModal = document.querySelector('#advisorQrModal');
+    const advisorQrClose = document.querySelector('#advisorQrClose');
+    function closeAdvisorQr() {
+      advisorQrModal.classList.remove('open');
+      advisorQrModal.hidden = true;
+      advisorQrOpen.setAttribute('aria-expanded', 'false');
+      advisorQrOpen.focus();
+    }
+    advisorQrOpen.addEventListener('click', () => {
+      advisorQrModal.hidden = false;
+      requestAnimationFrame(() => advisorQrModal.classList.add('open'));
+      advisorQrOpen.setAttribute('aria-expanded', 'true');
+      advisorQrClose.focus();
+    });
+    advisorQrClose.addEventListener('click', closeAdvisorQr);
+    advisorQrModal.addEventListener('click', (event) => { if (event.target === advisorQrModal) closeAdvisorQr(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !advisorQrModal.hidden) closeAdvisorQr(); });
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }), { threshold: .12 });
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   </script>
